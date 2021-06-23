@@ -3,8 +3,18 @@
     flex-direction: column;
     background-color: lightblue;
     padding: 1rem;
+    flex-basis: 20%;
+    height: 90vh;
 }
 
 .mail-boxes button {
     margin: 1rem 0;
+}
+
+.mail-compose-btn {
+    height: 3rem;
+    border-radius: 24px;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 1.5rem;
 }

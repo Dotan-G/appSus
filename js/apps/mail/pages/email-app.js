@@ -9,12 +9,9 @@ export default {
     },
     template: `
         <div v-if="mails" class="email-app">
-            <h2>Email App</h2>
-            <div class="mails-body">
+            <div class="mails-container">
                 <mail-func />
-                <div class="mails">
-                    <mails-list :mails="mails" />
-                </div>
+                <mails-list :mails="mails" />
             </div>
         </div>
     `,
@@ -23,11 +20,15 @@ export default {
             mails: null
         }
     },
-    methods: {},
+    methods: {
+        loadMails() {
+            mailsService.query()
+                .then(mails => this.mails = mails)
+        },
+    },
     computed: {},
     created() {
-        mailsService.query()
-            .then(mails => this.mails = mails)
+        this.loadMails()
     },
     destroyed() { }
 }

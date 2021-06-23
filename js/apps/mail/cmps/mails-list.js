@@ -9,7 +9,9 @@ export default {
     <div class="mails-list">
         <ul>
             <li v-for="mail in mails">
+            <router-link :to="'/mail/'+mail.id">
                 <mails-preview :mail="mail"/>          
+            </router-link>
             </li>
         </ul>
     </div>

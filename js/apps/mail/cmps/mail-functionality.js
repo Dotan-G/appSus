@@ -1,11 +1,11 @@
 export default {
     template: `
         <div class="mail-boxes">
-            <button>Compose</button>
-            <button>Inbox</button>
-            <button>Starred</button>
-            <button>Sent Mail</button>
-            <button>Drafts</button>
+            <button class="mail-compose-btn">+ Compose</button>
+            <button class="mail-inbox-btn">Inbox</button>
+            <button class="mail-starred-btn">Starred</button>
+            <button class="mail-sent-btn">Sent</button>
+            <button class="mail-drafts-btn">Drafts</button>
         </div>
     `,
     data() {

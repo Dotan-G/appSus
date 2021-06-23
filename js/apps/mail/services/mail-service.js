@@ -5,6 +5,10 @@ const MAILS_KEY = 'mailsDB'
 
 export const mailsService = {
     query,
+    getMailById,
+    removeMail,
+    addMail,
+
 }
 
 function query() {
@@ -17,4 +21,16 @@ function query() {
             }
             return mails
         })
+}
+
+function addMail(MAILS_KEY, mail) {
+    storageService.post(MAILS_KEY, mail)
+}
+
+function removeMail(MAILS_KEY, mailId) {
+    storageService.remove(MAILS_KEY, mailId)
+}
+
+function getMailById(mailId) {
+    return storageService.get(MAILS_KEY, mailId)
 }
