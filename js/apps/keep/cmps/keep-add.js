@@ -6,9 +6,9 @@ export default {
     template: `
     <div class="keep-add">
         <form @submit.prevent="save">
-            <input ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..."/>
+            <input ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
-     <ul>
+     <ul class="add-format-btn">
          <button>Checklist</button>
          <button>Text</button>         
          <button>Photo</button>
@@ -40,7 +40,10 @@ export default {
     methods: {
         save() {
             //this.keep.info.id = utilService.makeId();
-            keepService.save(this.keep)
+            keepService.save(this.keep);
+            console.log('emitting')
+            this.$emit('reloadList');
+            // TODO: add event to keep-app that will call load()
 
 
             // TODO: show message success)

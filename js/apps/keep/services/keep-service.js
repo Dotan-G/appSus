@@ -15,6 +15,8 @@ export const keepService = {
 
 };
 
+
+
 function query() {
     return storageService.query(KEEPS_KEY)
         .then(keeps => {

@@ -1,0 +1,15 @@
+/* .keep-list li {
+    display: flex;
+    width: 250px;
+    margin: 20px;
+    height: 250px;
+} */
+
+.keep-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

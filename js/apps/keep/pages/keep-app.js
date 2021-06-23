@@ -4,8 +4,8 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-            <keep-add></keep-add>
-            <keep-list :keeps="keepsToShow"></keep-list>
+            <keep-add @reloadList="loadKeeps"></keep-add>
+            <keep-list :keeps="keeps"></keep-list>
         </div>
     `,
     data() {
@@ -19,8 +19,9 @@ export default {
     },
     methods: {
         loadKeeps() {
+            console.log('loading')
             keepService.query()
-                .then(keeps => this.keeps = keeps)
+                .then(keeps => this.keeps = keeps.reverse())
         }
     },
     computed: {

@@ -1,12 +1,10 @@
 @import '../cmps/keep-add.css';
+@import '../cmps/keep-preview-text.css';
+@import '../cmps/keep-preview.css';
+@import '../cmps/keep-list.css';
 .keep-container {
     display: flex;
     flex-direction: column;
     height: 80vh;
     margin-bottom: 500px;
 }
-
-
-/* @import '../cmps/mail-func.css';
-@import '../cmps/mail-preview.css';
-@import '../cmps/mail-list.css';

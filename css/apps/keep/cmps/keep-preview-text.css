@@ -1,0 +1,7 @@
+.keep-preview-text {
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+    height: 250px;
+    overflow-wrap: break-word;
+}

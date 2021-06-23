@@ -15,12 +15,6 @@ export default {
     `,
     computed: {
 
-        gettest() {
-
-
-
-        }
-
 
     },
     methods: {
