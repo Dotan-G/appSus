@@ -1,0 +1,10 @@
+.mail-boxes {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    padding: 1rem;
+}
+
+.mail-boxes button {
+    margin: 1rem 0;
+}
