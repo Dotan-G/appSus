@@ -6,7 +6,7 @@ export const allMails = [
         body: 'Pick up!',
         isRead: false,
         realTime: new Date().toLocaleTimeString(),
-        sentAt: 1551133930594
+        sentAt: 
     },
     {
         id: 'JYOJa2NpSCq',
