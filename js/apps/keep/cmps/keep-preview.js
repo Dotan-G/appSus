@@ -1,22 +1,26 @@
-// export default {
-//     // props: ['keep],
-//     template:`
-//     <div class="keep-preview">
-//     </div>
-//     `
-// }
-
+import keepPreviewText from "./keep-preview-text.js"
+import keepPreviewImg from "./keep-preview-img.js"
+import keepPreviewTodos from "./keep-preview-todos.js"
 export default {
-    // props: ['keep'],
+    props: ['keep'],
     template: `
     <div class="keep-preview">
-    <p>(Note preview from preview-component): txt/jpg/audio sign/video image</p>
-    <!-- <img :src = "keep.thumbnail"> -->
-    <!-- <p>Title: {{keep.title}}</p> -->
+    <keep-preview-text v-if="keep.type=== 'NoteTxt'" :keep="keep"/>
+    <keep-preview-img v-if="keep.type=== 'NoteImg'" :keep="keep"/>
+    <keep-preview-todos v-if="keep.type=== 'NoteTodos'" :keep="keep"/>
+
+    
+    <!-- TODO: -->
+    <!-- Change to dynamic view/class -->
+
     </div>
     `,
     computed: {
 
     },
-    components: {}
+    components: {
+        keepPreviewText,
+        keepPreviewImg,
+        keepPreviewTodos
+    }
 }

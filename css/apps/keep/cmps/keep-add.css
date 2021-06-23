@@ -1,0 +1,14 @@
+.keep-add {
+    border: 1px black solid;
+    width: 90%;
+}
+
+.keep-add ul button {
+    border: none;
+    background-color: initial;
+}
+
+.keep-add ul input {
+    border: none;
+    /* width: ; */
+}
