@@ -1,17 +1,14 @@
 import keepPreview from "./keep-preview.js"
 export default {
-    // props: ['keeps'],
+    props: ['keeps'],
     template: `
     <ul class="keep-list">
-        <p>I am list component</p>
         <!-- <p>keep list will be rendered through keeps</p> -->
-        <keep-preview></keep-preview>
-        <p>keep details will be on keep-details page which i already made. But no routing yet</p>
-        <!-- <li v-for="keep in keeps" :key="keep.id" class="keep-preview-container">
-            <keep-preview :book="keep"/>
+        <li v-for="keep in keeps" :key="keep.id" class="keep-preview-container">
+            <keep-preview :keep="keep"/>
         
-            <router-link :to="'/keep/'+keep.id">Details</router-link>
-        </li> --> 
+            <!-- <router-link :to="'/keep/'+keep.id">Details</router-link> -->
+        </li> 
         
     </ul> 
     `,
