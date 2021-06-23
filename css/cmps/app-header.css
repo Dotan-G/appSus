@@ -1,0 +1,29 @@
+.app-header {
+    background-color: rgb(240, 180, 50);
+    height: 10vh;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: inline-block;
+    padding-inline-start: 1rem;
+}
+
+.logo h1 {
+    padding-left: 1vw;
+    font-size: 3rem;
+}
+
+.app-header nav {
+    display: inline-block;
+    padding-inline-end: 1rem;
+}
+
+a {
+    color: rgb(59, 58, 58);
+    font-size: 2rem;
+    text-decoration: none;
+}
