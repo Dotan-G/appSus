@@ -1,4 +1,6 @@
+import { utilService } from "./util-service.js";
 export const allKeeps = [{
+        id: utilService.makeId(),
         type: "NoteTxt",
         isPinned: true,
         info: {
@@ -6,6 +8,7 @@ export const allKeeps = [{
         }
     },
     {
+        id: utilService.makeId(),
         type: "NoteImg",
         info: {
             url: "http://coding-academy.org/books-photos/20.jpg",
@@ -16,6 +19,7 @@ export const allKeeps = [{
         }
     },
     {
+        id: utilService.makeId(),
         type: "NoteTodos",
         info: {
             label: "How was it:",
