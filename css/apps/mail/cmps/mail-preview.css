@@ -1,0 +1,23 @@
+.mail-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.mail-details .mail-name {
+    flex-basis: 10%;
+    justify-self: start;
+}
+
+.mail-details .mail-subject-and-body {
+    flex-basis: 80%;
+}
+
+.mail-details .mail-time {
+    flex-basis: 10%;
+    justify-self: end;
+}
+
+
+.is-not-read {
+    font-weight: 600;
+}

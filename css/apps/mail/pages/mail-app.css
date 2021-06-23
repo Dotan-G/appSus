@@ -1,3 +1,11 @@
-.mails-body {
+@import '../cmps/mail-func.css';
+@import '../cmps/mail-preview.css';
+@import '../cmps/mail-list.css';
+
+
+
+.mails-container {
     display: flex;
+    height: 80vh;
+    margin-bottom: 10vh;
 }
