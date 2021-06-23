@@ -3,8 +3,7 @@ import keepAdd from "../cmps/keep-add.js";
 import { keepService } from "../services/keep-service.js";
 export default {
     template: `
-        <div class="keep-app">
-            <h2>keep App</h2>
+        <div class="keep-app keep-container">
             <keep-add></keep-add>
             <keep-list :keeps="keepsToShow"></keep-list>
         </div>
