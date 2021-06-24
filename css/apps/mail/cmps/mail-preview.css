@@ -1,6 +1,7 @@
 .mail-details {
     display: flex;
     flex-direction: row;
+    color: black;
 }
 
 .mail-details .mail-name {
