@@ -4,7 +4,7 @@ export default {
     template: `
     <ul class="keep-list">
         <li v-for="keep in keeps" :key="keep.id">
-            <keep-preview :keep="keep"/>
+            <keep-preview :keep="keep" @editKeep="emitEditKeep"/>
             <button @click.prevent="remove(keep.id)">D</button>
         </li> 
         
@@ -17,6 +17,10 @@ export default {
         remove(keepId) {
             console.log(`Emitting keep ${keepId}`);
             this.$emit('removeKeep', keepId);
+        },
+        emitEditKeep(keepId) {
+            this.$emit('emitEditKeepKeepApp', keepId)
+            console.log(keepId)
         }
     }
 }

@@ -1,3 +1,4 @@
+//import { eventBus } from "../../../services/event-bus-service.js"
 import { keepService } from "../services/keep-service.js"
 import { utilService } from "../services/util-service.js"
 // TODO: Maybe need to add id
@@ -5,9 +6,12 @@ export default {
     // props: ['keep'],
     template: `
     <div class="keep-add">
-        <form @submit.prevent="save">
+    <!-- TODO: fix return bug -->
+        <!-- <form @submit.prevent="save"> -->
+        <form>
             <input @change="save" ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
+
      <ul class="add-format-btn">
          <button>Checklist</button>
          <button>Text</button>         
@@ -16,8 +20,7 @@ export default {
          <button>Audio</button>
          <button>List</button>
      </ul>   
-    <!-- <img :src = "keep.thumbnail"> -->
-    <!-- <p>Title: {{keep.title}}</p> -->
+  
     </div>
     `,
     data() {
@@ -39,8 +42,7 @@ export default {
     components: {},
     methods: {
         save() {
-            //this.keep.info.id = utilService.makeId();
-            // keepService.save(this.keep);
+
             console.log('emitting')
             this.$emit('addKeep', this.keep);
             this.keep = {
@@ -58,6 +60,7 @@ export default {
 
 
 
-        }
+        },
+
     }
 }

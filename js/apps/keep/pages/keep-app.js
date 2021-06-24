@@ -5,12 +5,13 @@ export default {
     template: `
         <div class="keep-app keep-container">
             <keep-add @addKeep="addKeep"></keep-add>
-            <keep-list :keeps="keeps" @removeKeep="removeKeep"></keep-list>
+            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepKeepApp="toEditableKeep"></keep-list>
         </div>
     `,
     data() {
         return {
-            keeps: null
+            keeps: null,
+            editableid: null
         }
     },
     components: {
@@ -18,6 +19,11 @@ export default {
         keepAdd
     },
     methods: {
+        toEditableKeep(keepId) {
+            this.editableKeepId = keepId;
+            console.log('this editablekeepid ', this.editableKeepId);
+            // continue edit keep
+        },
         removeKeep(keepId) {
             console.log('received emmiting with id:', keepId);
             keepService.removeKeep(keepId)
