@@ -4,13 +4,13 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-            <keep-add @reloadList="loadKeeps"></keep-add>
-            <keep-list :keeps="keeps"></keep-list>
+            <keep-add @addKeep="addKeep"></keep-add>
+            <keep-list :keeps="keeps" @removeKeep="removeKeep"></keep-list>
         </div>
     `,
     data() {
         return {
-            keeps: []
+            keeps: null
         }
     },
     components: {
@@ -18,10 +18,34 @@ export default {
         keepAdd
     },
     methods: {
+        removeKeep(keepId) {
+            console.log('received emmiting with id:', keepId);
+            keepService.removeKeep(keepId)
+                .then(() => this.loadKeeps());
+
+        },
         loadKeeps() {
             console.log('loading')
             keepService.query()
                 .then(keeps => this.keeps = keeps.reverse())
+        },
+        addKeep(keep) {
+            console.log('addKeep');
+            keepService.save(keep)
+                .then(() => {
+                    //this.keep = keep;
+                    console.log('success adding keep');
+                    this.loadKeeps();
+                    // TODO: later we can add a message to user.
+                })
+                .catch(err => {
+                    const msg = {
+                        txt: err,
+                        type: 'fail',
+                    };
+                    console.log(msg.type, msg.txt);
+                    z
+                })
         }
     },
     computed: {

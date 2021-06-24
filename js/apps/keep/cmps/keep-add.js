@@ -27,7 +27,7 @@ export default {
                 isPinned: false,
                 info: {
                     txt: '',
-                    id: 10
+                    id: null
                 }
             }
 
@@ -40,10 +40,18 @@ export default {
     methods: {
         save() {
             //this.keep.info.id = utilService.makeId();
-            keepService.save(this.keep);
+            // keepService.save(this.keep);
             console.log('emitting')
-            this.$emit('reloadList');
-            // TODO: add event to keep-app that will call load()
+            this.$emit('addKeep', this.keep);
+            this.keep = {
+                    type: "NoteTxt",
+                    isPinned: false,
+                    info: {
+                        txt: '',
+                        id: null
+                    }
+                }
+                // TODO: add event to keep-app that will call load()
 
 
             // TODO: show message success)

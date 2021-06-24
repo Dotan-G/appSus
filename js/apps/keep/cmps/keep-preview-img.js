@@ -4,7 +4,6 @@ export default {
     <div :style="keepStyle" class="keep-preview-text">
     <p>{{keep.info.title}}</p>
     <img :src="keep.info.url" width="150px">
-    <p>-------------------------</p>
     
 
     </div>

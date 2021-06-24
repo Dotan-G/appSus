@@ -6,7 +6,6 @@ export default {
         <p>Todos:</p>
         <p>Todo: {{todo.txt}}</p>
         <p>Done At: {{getDateFormat(todo.doneAt)}}</p>
-        <p>-------------------------</p>
 
 
     </li>

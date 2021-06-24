@@ -6,7 +6,8 @@ const KEEPS_KEY = 'keeps';
 
 export const keepService = {
     query,
-    save
+    save,
+    removeKeep
     // getBookById,
     // addReview,
     // removeReview,
@@ -21,15 +22,20 @@ function query() {
     return storageService.query(KEEPS_KEY)
         .then(keeps => {
             if (!keeps.length) {
-                // const defKeeps = _fillDefaultKeeps();
                 const defKeeps = allKeeps;
                 storageService.postMany(KEEPS_KEY, defKeeps);
                 return defKeeps;
             }
             return keeps;
         })
-}
+};
 
 function save(keep) {
+    console.log('entered save in service')
     return storageService.post(KEEPS_KEY, keep);
+};
+
+function removeKeep(keepId) {
+    console.log('entered removeKeep on service')
+    return storageService.remove(KEEPS_KEY, keepId);
 }
