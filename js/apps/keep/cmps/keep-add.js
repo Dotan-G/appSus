@@ -3,7 +3,6 @@ export default {
     props: ['editableKeepId', 'keep'],
     template: `
     <div class="keep-add">
-        <p>{{keep}}</p>
         <form v-if="!keepType ||keepType==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
@@ -42,22 +41,27 @@ export default {
             keepImg: {
                 id: this.editableKeepId,
                 type: "NoteImg",
+                isPinned: false,
                 info: {
-                    url: "",
-                    title: ""
+                    url: '',
+                    title: ''
                 },
                 style: {
-                    backgroundColor: ""
+                    backgroundColor: ''
                 }
             },
             keepTodo: {
                 id: utilService.makeId(),
                 type: "NoteTodos",
+                isPinned: false,
                 info: {
-                    label: "",
+                    label: '',
                     todos: [
-                        { txt: "", doneAt: null }
+                        { txt: '', doneAt: null }
                     ]
+                },
+                style: {
+                    backgroundColor: 'none'
                 }
             }
 
@@ -68,10 +72,6 @@ export default {
             return (this.keep.type)
         },
 
-        getIsPinned() {
-            return this.keep.isPinned;
-        }
-
     },
     components: {
 
@@ -80,7 +80,6 @@ export default {
         saveTxtKeep() {
             if (this.keep === null) { this.$emit('addKeep', this.keepTxt) } else {
                 var modKeep = this.keep;
-                console.log(modKeep);
                 modKeep.info.txt = this.keepTxt.info.txt;
                 this.$emit('editKeep', modKeep)
             }
@@ -91,25 +90,33 @@ export default {
                 id: null,
                 info: {
                     txt: '',
+                },
+                style: {
+                    backgroundColor: 'none'
                 }
             }
         },
 
         saveImgKeep() {
-            console.log('emitting new txtKeep  to keep-app');
-            this.$emit('addKeep', this.keepImg);
-            console.log('clearing add-keep keep varaible');
+            if (this.keep === null) { this.$emit('addKeep', this.keepImg) } else {
+                var modKeep = this.keep;
+                modKeep.info.url = this.keepImg.info.url;
+                modKeep.info.title = this.keepImg.info.title;
+                this.$emit('editKeep', modKeep);
+            };
             this.keepImg = {
-                id: this.editableKeepId,
                 type: "NoteImg",
+                isPinned: false,
+                id: null,
                 info: {
-                    url: "",
-                    title: ""
+                    url: '',
+                    title: ''
                 },
                 style: {
-                    backgroundColor: ""
+                    backgroundColor: 'none'
                 }
             }
+
         },
         newTxtKeep() {
             this.keepType = 'NoteTxt';

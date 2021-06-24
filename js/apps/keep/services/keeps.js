@@ -5,6 +5,9 @@ export const allKeeps = [{
         isPinned: false,
         info: {
             txt: "Dotan - Beers to the soccer game"
+        },
+        style: {
+            backgroundColor: 'none'
         }
     },
     {
@@ -29,6 +32,9 @@ export const allKeeps = [{
                 { txt: "Travel to Zanzibar", doneAt: null },
                 { txt: "Sleep and make some sport", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: 'none'
         }
     }
 ];
