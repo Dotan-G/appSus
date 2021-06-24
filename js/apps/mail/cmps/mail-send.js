@@ -4,11 +4,11 @@ export default {
             <form @submit.prevent>
                 <p>To</p>
                 <input type="email">
-                <p>copy</p>
+                <p>Copy</p>
                 <input type="email">
                 <p>Subject</p>
                 <input type="text" v-model="mail.subject">
-                <input type="text" v-model="mail.body">
+                <input type="text" v-model="mail.body" class="mail-body">
                 <button @click="send">Sent</button>
             </form>
         </section>

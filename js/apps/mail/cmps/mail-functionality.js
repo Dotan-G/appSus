@@ -1,7 +1,7 @@
 export default {
     template: `
-        <div class="mail-boxes">
-            <button class="mail-compose-btn">+ Compose</button>
+        <div class="mail-boxes" >
+            <button class="mail-compose-btn" @click="sentMail">+ Compose</button>
             <button class="mail-inbox-btn">Inbox</button>
             <button class="mail-starred-btn">Starred</button>
             <button class="mail-sent-btn">Sent</button>
@@ -9,15 +9,12 @@ export default {
         </div>
     `,
     data() {
-        return {
-            // compose: false,
-        }
+        return {}
     },
     methods: {
-        // sentMail() {
-        //     this.compose = true
-        //     this.$emit('compose', this.compose)
-        // }
+        sentMail() {
+            this.$emit('compose')
+        }
     },
     computed: {},
     created() { },
