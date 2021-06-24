@@ -3,20 +3,18 @@ import { storageService } from "../../../services/async-storage-service.js";
 import { allKeeps } from "../services/keeps.js"
 const KEEPS_KEY = 'keeps';
 
-// const gKeeps = _fillDefaultKeeps();
 
 export const keepService = {
     query,
     save,
-    removeKeep
-    // getBookById,
-    // addReview,
-    // removeReview,
-    // getGoogleBooks
-
+    removeKeep,
+    getKeepById
 
 };
 
+function getKeepById(keepId) {
+    return storageService.get(keepId)
+}
 
 
 function query() {
@@ -39,7 +37,6 @@ function save(keep) {
         keep.id = utilService.makeId();
         return storageService.post(KEEPS_KEY, keep)
     };
-    // return keep.id ? storageService.put(KEEPS_KEY, keep) : storageService.post(KEEPS_KEY, keep);
 };
 
 function removeKeep(keepId) {

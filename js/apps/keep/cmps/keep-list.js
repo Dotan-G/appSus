@@ -19,7 +19,7 @@ export default {
             this.$emit('removeKeep', keepId);
         },
         emitEditKeep(keepId) {
-            this.$emit('emitEditKeepKeepApp', keepId)
+            this.$emit('emitEditKeepApp', keepId)
             console.log(keepId)
         }
     }

@@ -10,9 +10,6 @@ export default {
     <keep-preview-todos v-if="keep.type=== 'NoteTodos'" :keep="keep"/>
 
     
-    <!-- TODO: -->
-    <!-- Change to dynamic view/class -->
-
     </div>
     `,
     computed: {
@@ -25,7 +22,6 @@ export default {
     },
     methods: {
         emitEditKeep(keepId) {
-            //   eventBus.$on('sendEditKeepId', keepId);
             console.log('entering emitEditKeep with id:', keepId);
             this.$emit('editKeep', keepId);
 
@@ -33,7 +29,5 @@ export default {
 
         }
     },
-    // destroyed() {
-    //     eventBus.$off('sendEditKeepId', keepId);
-    // }
+
 }

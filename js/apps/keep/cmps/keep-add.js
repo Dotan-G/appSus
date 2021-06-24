@@ -1,21 +1,24 @@
-//import { eventBus } from "../../../services/event-bus-service.js"
-import { keepService } from "../services/keep-service.js"
 import { utilService } from "../services/util-service.js"
-// TODO: Maybe need to add id
 export default {
     props: ['editableKeepId'],
     template: `
     <div class="keep-add">
-    <!-- TODO: fix return bug -->
-        <!-- <form @submit.prevent="save"> -->
-        <form>
-            <input @change="save" ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..." class="add-bar">
+        <form v-if="keepType==='NoteTxt' || keepType === ''">
+            <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
+        <form v-if="keepType==='NoteImg'">
+            <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
+            <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add Image url..." class="add-bar">
+        </form>
+        <form v-if="keepType==='NoteTodos'">
+            <input @change="save" ref="keepTodo" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
+        </form>
+        
 
      <ul class="add-format-btn">
          <button>Checklist</button>
-         <button>Text</button>         
-         <button>Photo</button>
+         <button @click="newTxtKeep">Text</button>         
+         <button @click="newImgKeep">Photo</button>
          <button>Video</button>
          <button>Audio</button>
          <button>List</button>
@@ -25,12 +28,34 @@ export default {
     `,
     data() {
         return {
-            keep: {
+            keepType: '',
+            keepTxt: {
                 id: this.editableKeepId,
                 type: "NoteTxt",
                 isPinned: false,
                 info: {
                     txt: '',
+                }
+            },
+            keepImg: {
+                id: this.editableKeepId,
+                type: "NoteImg",
+                info: {
+                    url: "",
+                    title: ""
+                },
+                style: {
+                    backgroundColor: ""
+                }
+            },
+            keepTodo: {
+                id: utilService.makeId(),
+                type: "NoteTodos",
+                info: {
+                    label: "",
+                    todos: [
+                        { txt: "", doneAt: null }
+                    ]
                 }
             }
 
@@ -41,12 +66,12 @@ export default {
     },
     components: {},
     methods: {
-        save() {
+        saveTxtKeep() {
 
-            console.log('emitting')
-            this.$emit('addKeep', this.keep);
+            console.log('emitting new txtKeep  to keep-app')
+            this.$emit('addKeep', this.keepTxt);
             console.log('clearing add-keep keep varaible')
-            this.keep = {
+            this.keepTxt = {
                 type: "NoteTxt",
                 isPinned: false,
                 id: null,
@@ -54,13 +79,31 @@ export default {
                     txt: '',
                 }
             }
+        },
+
+        saveImgKeep() {
+            console.log('emitting new txtKeep  to keep-app');
+            this.$emit('addKeep', this.keepImg);
+            console.log('clearing add-keep keep varaible');
+            this.keepImg = {
+                id: this.editableKeepId,
+                type: "NoteImg",
+                info: {
+                    url: "",
+                    title: ""
+                },
+                style: {
+                    backgroundColor: ""
+                }
+            }
+        },
+        newTxtKeep() {
+            this.keepType = 'NoteTxt';
+        },
+
+        newImgKeep() {
+            this.keepType = 'NoteImg'
         }
-        // TODO: add event to keep-app that will call load()
-
-
-        // TODO: show message success)
-
-
 
     },
 
