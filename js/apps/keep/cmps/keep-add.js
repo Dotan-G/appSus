@@ -8,15 +8,16 @@ export default {
         </form>
         <form v-if="keepType==='NoteImg'">
             <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
-            <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add Image url..." class="add-bar">
+            <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add an Image url..." class="add-bar">
         </form>
         <form v-if="keepType==='NoteTodos'">
-            <input @change="save" ref="keepTodo" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
+            <input ref="keepTodo" type="text" v-model="keepTodo.label" placeholder="Add a Tasks label..." class="add-bar">
+            <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a note..." class="add-bar" @change="saveTodoKeep">
         </form>
         
 
      <ul class="add-format-btn">
-         <button>Checklist</button>
+         <button @click='newTodoKeep'>Todo</button>
          <button @click="newTxtKeep">Text</button>         
          <button @click="newImgKeep">Photo</button>
          <button>Video</button>
@@ -28,14 +29,17 @@ export default {
     `,
     data() {
         return {
-            // keepType set the type of the current keep
             keepType: this.getkeepType,
+            todoTxt: '',
             keepTxt: {
                 id: this.editableKeepId,
                 type: "NoteTxt",
                 isPinned: false,
                 info: {
-                    txt: '',
+                    label: '',
+                    todos: [
+                        { txt: '', doneAt: null }
+                    ]
                 }
             },
             keepImg: {
@@ -77,17 +81,42 @@ export default {
 
     },
     methods: {
+        addTodoTxt() {
+
+        },
+        saveTodoKeep() {
+
+            if (this.keep === null) { this.$emit('addKeep', this.keepTodo) } else {
+                var modKeep = this.keep;
+                modKeep.info.label = this.keepTodo.info.label;
+                modKeep.info.todos = [...this.keepTodo.info.todos];
+                this.$emit('editKeep', modKeep);
+            }
+            this.keepTodo = {
+                id: null,
+                type: 'NoteTodos',
+                isPinned: false,
+                info: {
+                    label: '',
+                    todos: [{ txt: '', doneAt: null }]
+                },
+                style: {
+                    backgroundColor: 'none'
+                }
+
+            }
+
+        },
         saveTxtKeep() {
             if (this.keep === null) { this.$emit('addKeep', this.keepTxt) } else {
                 var modKeep = this.keep;
                 modKeep.info.txt = this.keepTxt.info.txt;
                 this.$emit('editKeep', modKeep)
             }
-            // this.$emit('addKeep', this.keepTxt);
             this.keepTxt = {
+                id: null,
                 type: "NoteTxt",
                 isPinned: false,
-                id: null,
                 info: {
                     txt: '',
                 },
@@ -124,6 +153,9 @@ export default {
 
         newImgKeep() {
             this.keepType = 'NoteImg'
+        },
+        newTodoKeep() {
+            this.keepType = 'NoteTodos'
         }
 
     },
