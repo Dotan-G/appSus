@@ -12,8 +12,12 @@ export const keepService = {
 
 };
 
+// function getKeepById(keepId) {
+//     return storageService.get(keepId)
+// }
+
 function getKeepById(keepId) {
-    return storageService.get(keepId)
+    return storageService.get(KEEPS_KEY, keepId)
 }
 
 
@@ -30,8 +34,6 @@ function query() {
 };
 
 function save(keep) {
-    console.log('entered save in service')
-
     if (keep.id) return storageService.put(KEEPS_KEY, keep)
     else {
         keep.id = utilService.makeId();
@@ -40,6 +42,5 @@ function save(keep) {
 };
 
 function removeKeep(keepId) {
-    console.log('entered removeKeep on service')
     return storageService.remove(KEEPS_KEY, keepId);
 }

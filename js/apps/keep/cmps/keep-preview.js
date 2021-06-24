@@ -22,7 +22,6 @@ export default {
     },
     methods: {
         emitEditKeep(keepId) {
-            console.log('entering emitEditKeep with id:', keepId);
             this.$emit('editKeep', keepId);
 
 

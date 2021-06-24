@@ -1,9 +1,10 @@
 import { utilService } from "../services/util-service.js"
 export default {
-    props: ['editableKeepId'],
+    props: ['editableKeepId', 'keep'],
     template: `
     <div class="keep-add">
-        <form v-if="keepType==='NoteTxt' || keepType === ''">
+        <p>{{keep}}</p>
+        <form v-if="!keepType ||keepType==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
         <form v-if="keepType==='NoteImg'">
@@ -28,7 +29,7 @@ export default {
     `,
     data() {
         return {
-            keepType: '',
+            keepType: this.getkeepType,
             keepTxt: {
                 id: this.editableKeepId,
                 type: "NoteTxt",
@@ -62,15 +63,23 @@ export default {
         }
     },
     computed: {
+        getkeepType() {
+            return (this.keep.type)
+        }
 
     },
-    components: {},
+    components: {
+
+    },
     methods: {
         saveTxtKeep() {
-
-            console.log('emitting new txtKeep  to keep-app')
-            this.$emit('addKeep', this.keepTxt);
-            console.log('clearing add-keep keep varaible')
+            if (this.keep === null) { this.$emit('addKeep', this.keepTxt) } else {
+                var modKeep = this.keep;
+                console.log(modKeep);
+                modKeep.info.txt = this.keepTxt.info.txt;
+                this.$emit('editKeep', modKeep)
+            }
+            // this.$emit('addKeep', this.keepTxt);
             this.keepTxt = {
                 type: "NoteTxt",
                 isPinned: false,

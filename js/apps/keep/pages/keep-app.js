@@ -4,9 +4,11 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-            <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add>
+            <keep-add @addKeep="addKeep" @editKeep="editKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add>
+            <!-- <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add> -->
+
             <!-- <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list> -->
-            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list>
+            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep"></keep-list>
         </div>
     `,
     data() {
@@ -21,10 +23,13 @@ export default {
         keepAdd
     },
     methods: {
-        SetKeep(keepId) {
-            console.log(keepId);
+        // sends keep from storage to 'keepToEdit' to addKeep component
+        setKeep(keepId) {
             keepService.getKeepById(keepId)
-                .then(keep => this.keepToEdit = keep);
+                .then(keep => {
+                    this.keepToEdit = keep
+                    console.log(this.keepToEdit);
+                })
         },
         toEditableKeep(keepId) {
             this.editableKeepId = keepId;
@@ -38,15 +43,30 @@ export default {
             keepService.query()
                 .then(keeps => this.keeps = keeps.reverse())
         },
-        addKeep(keep) {
-            console.log('addKeep');
-            console.log('editableKeepId', this.editableKeepId);
-            if (this.editableKeepId) keep.id = this.editableKeepId;
-            console.log('keep.id', keep.id);
+
+        // adds or edit keep in storage and loads it back to render
+
+        editKeep(editedKeep) {
+            this.saveKeep(editedKeep);
+        },
+
+        addKeep(newKeep) {
+            this.saveKeep(newKeep);
+        },
+
+        saveKeep(keep) {
+
+            // if there is an id here in keep-app - send it for edit functionality. Otherwise send it with null id to save as new
+            // if (this.editableKeepId) keep.id = this.editableKeepId;
+
+            console.log(keep);
+
             keepService.save(keep)
                 .then(() => {
+
                     console.log('success adding keep');
-                    this.editableKeepId = null;
+                    // this.editableKeepId = null;
+                    this.keepToEdit = null;
                     this.loadKeeps();
 
                 })
@@ -56,7 +76,7 @@ export default {
                         type: 'fail',
                     };
                     console.log(msg.type, msg.txt);
-                    z
+
                 })
         }
     },

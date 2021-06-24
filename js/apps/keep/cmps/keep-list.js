@@ -5,7 +5,7 @@ export default {
     <ul class="keep-list">
         <li v-for="keep in keeps" :key="keep.id">
             <keep-preview :keep="keep" @editKeep="emitEditKeep"/>
-            <button @click.prevent="remove(keep.id)">D</button>
+            <button @click.stop="remove(keep.id)">D</button>
         </li> 
         
     </ul> 
@@ -20,7 +20,6 @@ export default {
         },
         emitEditKeep(keepId) {
             this.$emit('emitEditKeepApp', keepId)
-            console.log(keepId)
         }
     }
 }
