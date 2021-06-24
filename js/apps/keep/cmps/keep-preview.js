@@ -4,7 +4,7 @@ import keepPreviewTodos from "./keep-preview-todos.js"
 export default {
     props: ['keep'],
     template: `
-    <div class="keep-preview-container keep-gallery" @click="editKeep(keep.id)">
+    <div class="keep-preview-container keep-gallery" @click="emitEditKeep(keep.id)">
     <keep-preview-text v-if="keep.type=== 'NoteTxt'" :keep="keep"/>
     <keep-preview-img v-if="keep.type=== 'NoteImg'" :keep="keep"/>
     <keep-preview-todos v-if="keep.type=== 'NoteTodos'" :keep="keep"/>
@@ -24,8 +24,9 @@ export default {
         keepPreviewTodos
     },
     methods: {
-        editKeep(keepId) {
-            console.log(keepId);
+        emitEditKeep(keepId) {
+            console.log('entering emitEditKeep with id:', keepId);
+
         }
     }
 }
