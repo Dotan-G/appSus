@@ -19,7 +19,6 @@ export default {
         return {
             filterBy: {
                 subject: '',
-                // by: null v-model="filterBy.by"
             }
         }
     },

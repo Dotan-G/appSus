@@ -1,7 +1,7 @@
 .mail-details {
     display: flex;
-    /* flex-direction: row; */
     color: black;
+    padding: 0.4rem;
 }
 
 .mail-checkbox {
@@ -28,24 +28,34 @@
 .mail-details .mail-content-list {
     flex-basis: 85%;
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 .mail-details .mail-name {
     flex-basis: 10%;
     justify-self: start;
+    margin: 0;
+    padding: 0;
 }
 
 .mail-details .mail-subject-and-body {
     flex-basis: 80%;
+    margin: 0;
+    padding: 0;
 }
 
 .mail-details .mail-time {
     flex-basis: 10%;
     justify-self: end;
+    margin: 0;
+    padding: 0;
 }
 
 .mail-delete {
     flex-basis: 5%;
+    margin: 0;
+    padding: 0;
 }
 
 .is-not-read {

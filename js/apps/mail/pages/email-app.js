@@ -1,7 +1,6 @@
 import { mailsService } from "../services/mail-service.js"
 import mailsList from "../cmps/mails-list.js"
 import mailFunc from "../cmps/mail-functionality.js"
-import mailFilter from "../cmps/mail-filter.js"
 import mailSend from "../cmps/mail-send.js"
 import mailDetails from "../cmps/mail-details.js"
 
@@ -9,16 +8,14 @@ export default {
     components: {
         mailsList,
         mailFunc,
-        mailFilter,
         mailSend,
         mailDetails,
     },
     template: `
         <div v-if="mails" class="email-app">
-                <mail-filter @filter="setFilter" />
             <div class="mails-container">
-                <mail-func @click.native="compose" />
-                <mails-list v-if="!isCompose && !isDetails" :mails="mailsToShow" @openMail="details" @remove="remove" />
+                <mail-func @compose="compose" />
+                <mails-list v-if="!isCompose && !isDetails" :mails="mailsToShow" @filterBy="setFilter" @openMail="details" @remove="remove" />
                 <mail-send  v-if="isCompose" @sentMail="sentMail" />
                 <mail-details v-if="isDetails" :mail="mail" @detailsClose="details" />
             </div>
@@ -38,9 +35,6 @@ export default {
             mailsService.query()
                 .then(mails => this.mails = mails)
         },
-        setFilter(filterBy) {
-            this.filterBy = filterBy
-        },
         compose() {
             this.isCompose = !this.isCompose
         },
@@ -57,6 +51,9 @@ export default {
                     console.log('why?')
                     this.loadMails()
                 })
+        },
+        setFilter(filterBy) {
+            this.filterBy = filterBy
         },
         remove(mailId) {
             mailsService.removeMail(mailId)

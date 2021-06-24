@@ -1,20 +1,25 @@
 .mail-boxes {
     display: flex;
     flex-direction: column;
-    background-color: lightblue;
-    padding: 1rem;
-    flex-basis: 20%;
-    height: 90vh;
-}
-
-.mail-boxes button {
-    margin: 1rem 0;
+    background-color: rgba(226, 226, 226, 0.52);
+    /* padding: 1rem; */
+    flex-basis: 15rem;
+    height: 80vh;
 }
 
 .mail-compose-btn {
+    margin: 1rem 1rem 3rem 1rem;
     height: 3rem;
     border-radius: 24px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: 1px solid black;
     font-size: 1.5rem;
+}
+
+.mail-boxes button:not(:first-child) {
+    margin: 0 1rem 0.1rem 0;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 0 25px 25px 0;
+    height: 2rem;
 }

@@ -2,10 +2,14 @@
 @import '../cmps/mail-preview.css';
 @import '../cmps/mail-list.css';
 @import '../cmps/mail-filter.css';
+@import '../cmps/mail-sent.css';
 
+
+.email-app {
+    height: 80vh;
+    margin-bottom: 10vh;
+}
 
 .mails-container {
     display: flex;
-    height: 80vh;
-    margin-bottom: 10vh;
 }
