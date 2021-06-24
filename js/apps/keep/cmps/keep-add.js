@@ -29,6 +29,7 @@ export default {
     `,
     data() {
         return {
+            // keepType set the type of the current keep
             keepType: this.getkeepType,
             keepTxt: {
                 id: this.editableKeepId,
@@ -65,6 +66,10 @@ export default {
     computed: {
         getkeepType() {
             return (this.keep.type)
+        },
+
+        getIsPinned() {
+            return this.keep.isPinned;
         }
 
     },
