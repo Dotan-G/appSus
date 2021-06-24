@@ -9,9 +9,16 @@ export default {
         </div>
     `,
     data() {
-        return {}
+        return {
+            // compose: false,
+        }
     },
-    methods: {},
+    methods: {
+        // sentMail() {
+        //     this.compose = true
+        //     this.$emit('compose', this.compose)
+        // }
+    },
     computed: {},
     created() { },
     destroyed() { }

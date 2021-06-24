@@ -44,14 +44,14 @@ export default {
             console.log('emitting')
             this.$emit('addKeep', this.keep);
             this.keep = {
-                    type: "NoteTxt",
-                    isPinned: false,
-                    info: {
-                        txt: '',
-                        id: null
-                    }
+                type: "NoteTxt",
+                isPinned: false,
+                info: {
+                    txt: '',
+                    id: null
                 }
-                // TODO: add event to keep-app that will call load()
+            }
+            // TODO: add event to keep-app that will call load()
 
 
             // TODO: show message success)
