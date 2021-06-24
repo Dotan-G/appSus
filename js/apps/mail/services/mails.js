@@ -1,11 +1,12 @@
-export const allMails = [{
+export const allMails = [
+    {
         id: 'OXeMG8wNskc',
         name: 'Dotan',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         realTime: new Date().toLocaleTimeString(),
-        sentAt: 1551133931000
+        sentAt: 1551133930000
     },
     {
         id: 'JYOJa2NpSCq',
