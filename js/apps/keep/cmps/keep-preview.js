@@ -1,7 +1,6 @@
 import keepPreviewText from "./keep-preview-text.js"
 import keepPreviewImg from "./keep-preview-img.js"
 import keepPreviewTodos from "./keep-preview-todos.js"
-import { eventBus } from "../../../services/event-bus-service.js"
 export default {
     props: ['keep'],
     template: `
