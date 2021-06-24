@@ -4,14 +4,14 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-            <keep-add @addKeep="addKeep"></keep-add>
+            <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId"></keep-add>
             <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepKeepApp="toEditableKeep"></keep-list>
         </div>
     `,
     data() {
         return {
             keeps: null,
-            editableid: null
+            editableKeepId: null
         }
     },
     components: {
@@ -21,27 +21,29 @@ export default {
     methods: {
         toEditableKeep(keepId) {
             this.editableKeepId = keepId;
-            console.log('this editablekeepid ', this.editableKeepId);
             // continue edit keep
         },
         removeKeep(keepId) {
-            console.log('received emmiting with id:', keepId);
             keepService.removeKeep(keepId)
                 .then(() => this.loadKeeps());
 
         },
         loadKeeps() {
-            console.log('loading')
             keepService.query()
                 .then(keeps => this.keeps = keeps.reverse())
         },
         addKeep(keep) {
             console.log('addKeep');
+            console.log('editableKeepId', this.editableKeepId);
+            if (this.editableKeepId) keep.id = this.editableKeepId;
+            console.log('keep.id', keep.id);
             keepService.save(keep)
                 .then(() => {
                     //this.keep = keep;
                     console.log('success adding keep');
+                    this.editableKeepId = null;
                     this.loadKeeps();
+
                     // TODO: later we can add a message to user.
                 })
                 .catch(err => {

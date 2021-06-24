@@ -1,3 +1,4 @@
+import { utilService } from "./util-service.js";
 import { storageService } from "../../../services/async-storage-service.js";
 import { allKeeps } from "../services/keeps.js"
 const KEEPS_KEY = 'keeps';
@@ -32,7 +33,13 @@ function query() {
 
 function save(keep) {
     console.log('entered save in service')
-    return storageService.post(KEEPS_KEY, keep);
+
+    if (keep.id) return storageService.put(KEEPS_KEY, keep)
+    else {
+        keep.id = utilService.makeId();
+        return storageService.post(KEEPS_KEY, keep)
+    };
+    // return keep.id ? storageService.put(KEEPS_KEY, keep) : storageService.post(KEEPS_KEY, keep);
 };
 
 function removeKeep(keepId) {

@@ -3,7 +3,7 @@ import { keepService } from "../services/keep-service.js"
 import { utilService } from "../services/util-service.js"
 // TODO: Maybe need to add id
 export default {
-    // props: ['keep'],
+    props: ['editableKeepId'],
     template: `
     <div class="keep-add">
     <!-- TODO: fix return bug -->
@@ -26,11 +26,11 @@ export default {
     data() {
         return {
             keep: {
+                id: this.editableKeepId,
                 type: "NoteTxt",
                 isPinned: false,
                 info: {
                     txt: '',
-                    id: null
                 }
             }
 
@@ -45,12 +45,13 @@ export default {
 
             console.log('emitting')
             this.$emit('addKeep', this.keep);
+            console.log('clearing add-keep keep varaible')
             this.keep = {
                     type: "NoteTxt",
                     isPinned: false,
+                    id: null,
                     info: {
                         txt: '',
-                        id: null
                     }
                 }
                 // TODO: add event to keep-app that will call load()
