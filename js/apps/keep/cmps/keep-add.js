@@ -6,7 +6,7 @@ export default {
     template: `
     <div class="keep-add">
         <form @submit.prevent="save">
-            <input ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..." class="add-bar">
+            <input @change="save" ref="keepTxt" type="text" v-model="keep.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
      <ul class="add-format-btn">
          <button>Checklist</button>
