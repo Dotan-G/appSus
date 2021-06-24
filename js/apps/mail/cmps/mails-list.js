@@ -9,9 +9,7 @@ export default {
     <div class="mails-list">
         <ul>
             <li v-for="mail in mails">
-            <router-link :to="'/mail/'+mail.id">
-                <mails-preview :mail="mail"/>          
-            </router-link>
+                <mails-preview :mail="mail" @openMail="openMail" @remove="remove" />          
             </li>
         </ul>
     </div>
@@ -19,7 +17,14 @@ export default {
     data() {
         return {}
     },
-    methods: {},
+    methods: {
+        openMail(mailId) {
+            this.$emit('openMail', mailId)
+        },
+        remove(mailId) {
+            this.$emit('remove', mailId)
+        }
+    },
     computed: {},
     created() { },
     destroyed() { }

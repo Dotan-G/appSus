@@ -13,9 +13,9 @@
     /* height: 3rem; */
 }
 
-.mails-list li:hover{
+/* .mails-list li:hover{
     cursor: pointer;
-}
+} */
 
 .mails-list li:nth-child(odd){
     background-color: rgba(226, 226, 226, 0.52);

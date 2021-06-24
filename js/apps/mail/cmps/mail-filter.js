@@ -1,13 +1,17 @@
 export default {
     template: `
-        <section>
+        <section class="mail-filter flex-center">
             <input placeholder="search..." 
             type="text" 
             v-model="filterBy.subject" 
             @input="filter">
-            <select>
+            <select class="filterBy">
                 <option value="NAME">Name</option>
                 <option value="SUBJECT" selected>Subject</option>
+            </select>
+            <select class="sortBy">
+                <option value="OLD">Oldest</option>
+                <option value="NEW" selected>Newest</option>
             </select>
         </section>
     `,

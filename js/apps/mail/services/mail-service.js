@@ -8,7 +8,7 @@ export const mailsService = {
     getMailById,
     removeMail,
     addMail,
-
+    updateMail,
 }
 
 function query() {
@@ -23,14 +23,18 @@ function query() {
         })
 }
 
-function addMail(MAILS_KEY, mail) {
-    storageService.post(MAILS_KEY, mail)
+function addMail(mail) {
+    return storageService.post(MAILS_KEY, mail)
 }
 
-function removeMail(MAILS_KEY, mailId) {
-    storageService.remove(MAILS_KEY, mailId)
+function removeMail(mailId) {
+    return storageService.remove(MAILS_KEY, mailId)
 }
 
 function getMailById(mailId) {
     return storageService.get(MAILS_KEY, mailId)
+}
+
+function updateMail(mail) {
+    return storageService.put(MAILS_KEY, mail)
 }

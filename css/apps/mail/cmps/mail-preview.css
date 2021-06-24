@@ -1,7 +1,33 @@
 .mail-details {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     color: black;
+}
+
+.mail-checkbox {
+    flex-basis: 5%;
+}
+
+.mail-star{
+    flex-basis: 5%;
+    position: relative;
+}
+
+.mail-star input {
+    margin: 0;
+    position: absolute;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.mail-star p {
+    position: absolute;
+    margin: 0;
+}
+
+.mail-details .mail-content-list {
+    flex-basis: 85%;
+    display: flex;
 }
 
 .mail-details .mail-name {
@@ -18,6 +44,9 @@
     justify-self: end;
 }
 
+.mail-delete {
+    flex-basis: 5%;
+}
 
 .is-not-read {
     font-weight: 600;

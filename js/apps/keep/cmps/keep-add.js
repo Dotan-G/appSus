@@ -47,21 +47,21 @@ export default {
             this.$emit('addKeep', this.keep);
             console.log('clearing add-keep keep varaible')
             this.keep = {
-                    type: "NoteTxt",
-                    isPinned: false,
-                    id: null,
-                    info: {
-                        txt: '',
-                    }
+                type: "NoteTxt",
+                isPinned: false,
+                id: null,
+                info: {
+                    txt: '',
                 }
-                // TODO: add event to keep-app that will call load()
+            }
+        }
+        // TODO: add event to keep-app that will call load()
 
 
-            // TODO: show message success)
+        // TODO: show message success)
 
 
 
-        },
+    },
 
-    }
 }
