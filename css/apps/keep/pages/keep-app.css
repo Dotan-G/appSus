@@ -1,7 +1,9 @@
+@import '../cmps/keep-list.css';
+@import '../cmps/keep-preview.css';
 @import '../cmps/keep-add.css';
 @import '../cmps/keep-preview-text.css';
-@import '../cmps/keep-preview.css';
-@import '../cmps/keep-list.css';
+@import '../cmps/keep-preview-img.css';
+@import '../cmps/keep-preview-todos.css';
 .keep-container {
     display: flex;
     flex-direction: column;

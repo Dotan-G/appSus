@@ -1,6 +1,6 @@
 import { utilService } from "../services/util-service.js"
 export default {
-    props: ['editableKeepId', 'keep'],
+    props: ['editableKeepId', 'keep', 'delTask'],
     template: `
     <div class="keep-add">
         <form v-if="!keepType ||keepType==='NoteTxt'">

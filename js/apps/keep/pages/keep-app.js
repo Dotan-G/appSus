@@ -4,18 +4,16 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-            <keep-add @addKeep="addKeep" @editKeep="editKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add>
-            <!-- <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add> -->
-
-            <!-- <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list> -->
-            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep"></keep-list>
+            <keep-add @addKeep="addKeep" @editKeep="editKeep" :editableKeepId="editableKeepId" :keep="keepToEdit" :delTask="delTask"></keep-add>
+            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep" @todoEditedKeepToKeepApp="editKeep"></keep-list>
         </div>
     `,
     data() {
         return {
             keepToEdit: null,
             keeps: null,
-            editableKeepId: null
+            editableKeepId: null,
+            delTask: null
         }
     },
     components: {
@@ -23,6 +21,9 @@ export default {
         keepAdd
     },
     methods: {
+        setDelTask(task) {
+            this.delTask = task;
+        },
         // sends keep from storage to 'keepToEdit' to addKeep component
         setKeep(keepId) {
             keepService.getKeepById(keepId)
@@ -47,7 +48,11 @@ export default {
         // adds or edit keep in storage and loads it back to render
 
         editKeep(editedKeep) {
-            this.saveKeep(editedKeep);
+            if (editedKeep.type === 'NoteTodos' && !editedKeep.info.todos.length) {
+                console.log(editedKeep.id + 'Erasing')
+                this.removeKeep(editedKeep.id);
+
+            } else this.saveKeep(editedKeep);
         },
 
         addKeep(newKeep) {
@@ -64,7 +69,7 @@ export default {
             keepService.save(keep)
                 .then(() => {
 
-                    console.log('success adding keep');
+                    console.log('success adding or modifing keep');
                     // this.editableKeepId = null;
                     this.keepToEdit = null;
                     this.loadKeeps();

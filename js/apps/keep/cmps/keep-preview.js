@@ -7,7 +7,7 @@ export default {
     <div class="keep-preview-container keep-gallery" @click="emitEditKeep(keep.id)">
     <keep-preview-text v-if="keep.type=== 'NoteTxt'" :keep="keep"/>
     <keep-preview-img v-if="keep.type=== 'NoteImg'" :keep="keep"/>
-    <keep-preview-todos v-if="keep.type=== 'NoteTodos'" :keep="keep"/>
+    <keep-preview-todos v-if="keep.type=== 'NoteTodos'" @todoKeepToPreview="emitEditedKeep" :keep="keep"/>
 
     
     </div>
@@ -24,8 +24,9 @@ export default {
         emitEditKeep(keepId) {
             this.$emit('editKeep', keepId);
 
-
-
+        },
+        emitEditedKeep(keep) {
+            this.$emit('todoEditedKeepToList', keep);
         }
     },
 
