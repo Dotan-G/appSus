@@ -4,14 +4,8 @@ import { keepService } from "../services/keep-service.js";
 export default {
     template: `
         <div class="keep-app keep-container">
-<<<<<<< HEAD
-            <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add>
-            <!-- <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list> -->
-            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep"></keep-list>
-=======
             <keep-add @addKeep="addKeep" @editKeep="editKeep" :editableKeepId="editableKeepId" :keep="keepToEdit" :delTask="delTask"></keep-add>
             <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep" @todoEditedKeepToKeepApp="editKeep"></keep-list>
->>>>>>> 434710396ac53c66ff68dc2618147848119b2e4c
         </div>
     `,
     data() {
@@ -27,13 +21,10 @@ export default {
         keepAdd
     },
     methods: {
-<<<<<<< HEAD
-=======
         setDelTask(task) {
             this.delTask = task;
         },
         // sends keep from storage to 'keepToEdit' to addKeep component
->>>>>>> 434710396ac53c66ff68dc2618147848119b2e4c
         setKeep(keepId) {
             keepService.getKeepById(keepId)
                 .then(keep => {
