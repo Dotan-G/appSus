@@ -4,7 +4,7 @@ export default {
     template: `
     <div class="keep-add">
         <!-- <p>{{keepType}}</p> -->
-        <form v-if="!keep ||keepType==='NoteTxt'">
+        <form v-if="!keep ||keep.type==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
         <form  v-if="keep && keep.type==='NoteImg'">
