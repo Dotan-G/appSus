@@ -2,21 +2,15 @@ import { utilService } from "../services/util-service.js"
 export default {
     props: ['editableKeepId', 'keep', 'delTask'],
     template: `
-    <div class="keep-add">
-
-        <!-- <p>{{keepType}}</p> -->
-        <!-- <form v-if="(!keep && !keepType) || (!keep && keepType === 'NoteTxt') || keep.type === 'NoteTxt'"> -->
-        <form v-if="keepType==='NoteTxt'">
+    <div class="keep-add">      
+        <form v-if="buttonChoice==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
-        <!-- <form  v-if="(!keep && keepType==='NoteImg') || (keep && keep.type==='NoteImg')"> -->
-        <form v-if="keepType==='NoteImg'">
-
+        <form v-if="buttonChoice==='NoteImg'">
             <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
             <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add an Image url..." class="add-bar">
         </form>
-        <!-- <form v-if="keep && keep.type==='NoteTodos' || keepType==='NoteTodos'"> -->
-        <form v-if="keepType==='NoteTodo'">
+        <form v-if="buttonChoice==='NoteTodo'">
             <input ref="keepTodo" type="text" v-model="keepTodo.label" placeholder="Add a Tasks label..." class="add-bar">
             <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a Task..." class="add-bar" @change="saveTodoKeep">
         </form>
@@ -35,8 +29,8 @@ export default {
     `,
     data() {
         return {
-            buttonChoice: null,
-            keepType: this.getkeepType(),
+            buttonChoice: 'NoteTxt',
+            keepType: null,
             todoTxt: '',
             keepTxt: {
                 id: this.editableKeepId,
@@ -86,11 +80,13 @@ export default {
 
     },
     methods: {
-        getkeepType() {
-            if (this.keepType) return this.keep.type;
-            else if (this.buttonChoice !== null) return this.buttonChoice;
-            return 'NoteTxT';
-        },
+        // getkeepType() {
+
+        //     if (!this.keep.type) {
+        //         return this.buttonChoice !== null ? this.buttonChoice : 'NoteTxT';
+        //     }
+        //     return this.keep.type;
+        // },
         saveTodoKeep() {
 
             if (this.keep === null) { this.$emit('addKeep', this.keepTodo) } else {
@@ -163,7 +159,7 @@ export default {
             this.buttonChoice = 'NoteImg'
         },
         newTodoKeep() {
-            this.buttonChoice = 'NoteTodos'
+            this.buttonChoice = 'NoteTodo'
         }
 
     }
