@@ -8,7 +8,7 @@ export default {
                 <input type="email">
                 <p>Subject</p>
                 <input type="text" v-model="mail.subject">
-                <input type="text" v-model="mail.body" class="mail-body">
+                <textarea type="text" v-model="mail.body" class="mail-body"></textarea>
                 <button @click="send">Sent</button>
             </form>
         </section>
@@ -19,24 +19,26 @@ export default {
                 name: 'AppSus',
                 subject: '',
                 body: '',
-                isRead: false,
                 realTime: null,
-                sentAt: null
+                sentAt: null,
+                isRead: false,
+                isStarred: false
             },
         }
     },
     methods: {
         send() {
-            this.mail.realTime = new Date().toLocaleTimeString()
-            this.mail.sentAt = Date.now()
+            this.mail.realTime = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+                this.mail.sentAt = Date.now()
             this.$emit('sentMail', this.mail)
             this.mail = {
                 name: "appSus",
                 subject: '',
                 body: '',
-                isRead: false,
                 realTime: null,
-                sentAt: null
+                sentAt: null,
+                isRead: false,
+                isStarred: false
             }
         }
     },

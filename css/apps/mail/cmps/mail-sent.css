@@ -1,7 +1,7 @@
 .sent-mail {
     flex-basis: 100%;
     height: calc(80vh - 3rem);
-    background-color: rgba(226, 226, 226, 0.52);
+    background-color: rgb(255, 255, 255);
 }
 
 .sent-mail form {
@@ -10,7 +10,8 @@
 }
 
 .sent-mail form input {
-    display: inline-block;
+    background-color: rgba(226, 226, 226, 0.52);
+    font-size: 1.1rem;
     margin-top: 1rem;
     width: 100%;
     height: 2rem;
@@ -19,5 +20,11 @@
 }
 
 .mail-body {
+    background-color: rgba(226, 226, 226, 0.52);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    width: 100%;
     height: 8rem;
+    border: 1px solid black;
+    border-radius: 5px;
 }

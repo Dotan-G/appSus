@@ -1,0 +1,8 @@
+.mail-content {
+    flex-basis: 100%;
+}
+
+.user-details {
+    height: 3rem;
+    display: flex;
+}

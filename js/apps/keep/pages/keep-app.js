@@ -6,7 +6,7 @@ export default {
         <div class="keep-app keep-container">
             <keep-add @addKeep="addKeep" :editableKeepId="editableKeepId" :keep="keepToEdit"></keep-add>
             <!-- <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list> -->
-            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="toEditableKeep"></keep-list>
+            <keep-list :keeps="keeps" @removeKeep="removeKeep" @emitEditKeepApp="setKeep"></keep-list>
         </div>
     `,
     data() {
@@ -21,8 +21,7 @@ export default {
         keepAdd
     },
     methods: {
-        SetKeep(keepId) {
-            console.log(keepId);
+        setKeep(keepId) {
             keepService.getKeepById(keepId)
                 .then(keep => this.keepToEdit = keep);
         },
@@ -68,5 +67,5 @@ export default {
     created() {
         this.loadKeeps();
     },
-    destroyed() {}
+    destroyed() { }
 }

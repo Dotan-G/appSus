@@ -6,7 +6,7 @@
 
 .mail-filter input {
     height: 2.5rem;
-    width: 85%;
+    width: 75%;
     margin-inline-end: 1rem;
     border-radius: 1rem;
     border: 1px solid black;
@@ -15,7 +15,7 @@
 .mail-filter .filterBy {
     position: absolute;
     z-index: 1;
-    right: 10%;
+    right: 20%;
     margin-inline-end: 4rem;
     height: 2.3rem;
     width: 5rem;
@@ -25,6 +25,14 @@
 }
 
 .mail-filter .sortBy {
+    height: 2.5rem;
+    width: 10%;
+    border-radius: 1rem;
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+.mail-filter .showBy {
     height: 2.5rem;
     width: 10%;
     border-radius: 1rem;

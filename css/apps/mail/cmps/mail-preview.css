@@ -7,10 +7,16 @@
 .mail-checkbox {
     flex-basis: 5%;
 }
+.mail-checkbox input:hover{
+    cursor: pointer;
+}
 
 .mail-star{
     flex-basis: 5%;
     position: relative;
+}
+.mail-star input{
+    cursor: pointer;
 }
 
 .mail-star input {
@@ -30,6 +36,9 @@
     display: flex;
     margin: 0;
     padding: 0;
+}
+.mail-details .mail-content-list:hover{
+    cursor: pointer;
 }
 
 .mail-details .mail-name {
@@ -56,6 +65,9 @@
     flex-basis: 5%;
     margin: 0;
     padding: 0;
+}
+.mail-delete {
+    cursor: pointer;
 }
 
 .is-not-read {

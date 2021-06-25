@@ -8,9 +8,9 @@ export default {
             <div class="mail-checkbox flex-center">
                 <input type="checkbox">
             </div>
-            <div class="mail-star flex-center">
+            <div class="mail-star flex-center" @click="starClick">
                 <input type="checkbox">
-                <p>☆</p>
+                <p ref="elParag" @click="starred">☆</p>
             </div>
             <div class="mail-content-list" @click="openMail">
                 <p class="mail-name" :class="{'is-not-read': !mail.isRead }">{{mail.name}}</p>
@@ -24,7 +24,7 @@ export default {
     `,
     data() {
         return {
-
+            isMarked: null,
         }
     },
     methods: {
@@ -38,18 +38,26 @@ export default {
         },
         mark() {
             console.log('mark?')
-            const checkbox = this.$refs.checkbox
-            checkbox.innerText = '☒'
         },
         remove() {
             this.$emit('remove', this.mail.id)
-        }
+        },
+        starClick() {
+            this.mail.isStarred = !this.mail.isStarred
+            mailsService.updateMail(this.mail)
+            this.starred()
+        },
+        starred() {
+            const star = this.$refs.elParag
+            star.innerText = (this.mail.isStarred) ? '★' : '☆';
+        },
     },
     computed: {
 
     },
-    created() {
-
-    },
-    destroyed() { }
+    created() { },
+    destroyed() { },
+    mounted() {
+        isStarred: this.starred()
+    }
 }

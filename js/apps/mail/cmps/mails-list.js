@@ -10,7 +10,7 @@ export default {
     template: `
     <section class="mails-list">
         <div class="mail-filter">
-            <mail-filter @filter="setFilter" />
+            <mail-filter @filter="setFilter" @sort="setSort" @show="setShow" />
         </div>
         <div >
             <ul>
@@ -33,6 +33,12 @@ export default {
         },
         setFilter(filterBy) {
             this.$emit('filterBy', filterBy)
+        },
+        setSort(sortBy) {
+            this.$emit('sortBy', sortBy)
+        },
+        setShow(showBy) {
+            this.$emit('showBy', showBy)
         },
     },
     computed: {},
