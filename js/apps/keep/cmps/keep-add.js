@@ -3,17 +3,22 @@ export default {
     props: ['editableKeepId', 'keep', 'delTask'],
     template: `
     <div class="keep-add">
+
         <!-- <p>{{keepType}}</p> -->
-        <form v-if="!keep ||keep.type==='NoteTxt'">
+        <!-- <form v-if="(!keep && !keepType) || (!keep && keepType === 'NoteTxt') || keep.type === 'NoteTxt'"> -->
+        <form v-if="keepType==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
-        <form  v-if="keep && keep.type==='NoteImg'">
+        <!-- <form  v-if="(!keep && keepType==='NoteImg') || (keep && keep.type==='NoteImg')"> -->
+        <form v-if="keepType==='NoteImg'">
+
             <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
             <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add an Image url..." class="add-bar">
         </form>
-        <form v-if="keep && keep.type==='NoteTodos'">
+        <!-- <form v-if="keep && keep.type==='NoteTodos' || keepType==='NoteTodos'"> -->
+        <form v-if="keepType==='NoteTodo'">
             <input ref="keepTodo" type="text" v-model="keepTodo.label" placeholder="Add a Tasks label..." class="add-bar">
-            <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a note..." class="add-bar" @change="saveTodoKeep">
+            <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a Task..." class="add-bar" @change="saveTodoKeep">
         </form>
         
 
@@ -30,7 +35,8 @@ export default {
     `,
     data() {
         return {
-            keepType: this.getkeepType,
+            buttonChoice: null,
+            keepType: this.getkeepType(),
             todoTxt: '',
             keepTxt: {
                 id: this.editableKeepId,
@@ -73,17 +79,17 @@ export default {
         }
     },
     computed: {
-        getkeepType() {
-            return (this.keep.type)
-        },
+
 
     },
     components: {
 
     },
     methods: {
-        addTodoTxt() {
-
+        getkeepType() {
+            if (this.keepType) return this.keep.type;
+            else if (this.buttonChoice !== null) return this.buttonChoice;
+            return 'NoteTxT';
         },
         saveTodoKeep() {
 
@@ -149,16 +155,16 @@ export default {
 
         },
         newTxtKeep() {
-            this.keepType = 'NoteTxt';
+            this.buttonChoice = 'NoteTxt';
         },
 
         newImgKeep() {
-            this.keepType = 'NoteImg'
+            console.log(this.keepType);
+            this.buttonChoice = 'NoteImg'
         },
         newTodoKeep() {
-            this.keepType = 'NoteTodos'
+            this.buttonChoice = 'NoteTodos'
         }
 
-    },
-
+    }
 }
