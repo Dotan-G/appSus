@@ -3,14 +3,15 @@ export default {
     props: ['editableKeepId', 'keep', 'delTask'],
     template: `
     <div class="keep-add">
-        <form v-if="!keepType ||keepType==='NoteTxt'">
+        <!-- <p>{{keepType}}</p> -->
+        <form v-if="!keep ||keepType==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
-        <form v-if="keepType==='NoteImg'">
+        <form  v-if="keep && keep.type==='NoteImg'">
             <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
             <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add an Image url..." class="add-bar">
         </form>
-        <form v-if="keepType==='NoteTodos'">
+        <form v-if="keep && keep.type==='NoteTodos'">
             <input ref="keepTodo" type="text" v-model="keepTodo.label" placeholder="Add a Tasks label..." class="add-bar">
             <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a note..." class="add-bar" @change="saveTodoKeep">
         </form>

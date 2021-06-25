@@ -61,16 +61,11 @@ export default {
 
         saveKeep(keep) {
 
-            // if there is an id here in keep-app - send it for edit functionality. Otherwise send it with null id to save as new
-            // if (this.editableKeepId) keep.id = this.editableKeepId;
-
-            console.log(keep);
 
             keepService.save(keep)
                 .then(() => {
 
                     console.log('success adding or modifing keep');
-                    // this.editableKeepId = null;
                     this.keepToEdit = null;
                     this.loadKeeps();
 
