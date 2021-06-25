@@ -1,22 +1,29 @@
 import { utilService } from "../services/util-service.js"
 export default {
-    props: ['editableKeepId'],
+    props: ['editableKeepId', 'keep', 'delTask'],
     template: `
     <div class="keep-add">
-        <form v-if="keepType==='NoteTxt' || keepType === ''">
+
+        <!-- <p>{{keepType}}</p> -->
+        <!-- <form v-if="(!keep && !keepType) || (!keep && keepType === 'NoteTxt') || keep.type === 'NoteTxt'"> -->
+        <form v-if="keepType==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
+        <!-- <form  v-if="(!keep && keepType==='NoteImg') || (keep && keep.type==='NoteImg')"> -->
         <form v-if="keepType==='NoteImg'">
+
             <input ref="keepImg" type="text" v-model="keepImg.info.title" placeholder="Add a Title for your Image..." class="add-bar">
-            <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add Image url..." class="add-bar">
+            <input ref="keepImg" type="text" v-model="keepImg.info.url" @change="saveImgKeep" placeholder="Add an Image url..." class="add-bar">
         </form>
-        <form v-if="keepType==='NoteTodos'">
-            <input @change="save" ref="keepTodo" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
+        <!-- <form v-if="keep && keep.type==='NoteTodos' || keepType==='NoteTodos'"> -->
+        <form v-if="keepType==='NoteTodo'">
+            <input ref="keepTodo" type="text" v-model="keepTodo.label" placeholder="Add a Tasks label..." class="add-bar">
+            <input ref="keepTodo" type="text" v-model="keepTodo.info.todos[0].txt" placeholder="Add a Task..." class="add-bar" @change="saveTodoKeep">
         </form>
         
 
      <ul class="add-format-btn">
-         <button>Checklist</button>
+         <button @click='newTodoKeep'>Todo</button>
          <button @click="newTxtKeep">Text</button>         
          <button @click="newImgKeep">Photo</button>
          <button>Video</button>
@@ -28,34 +35,44 @@ export default {
     `,
     data() {
         return {
-            keepType: '',
+            buttonChoice: null,
+            keepType: this.getkeepType(),
+            todoTxt: '',
             keepTxt: {
                 id: this.editableKeepId,
                 type: "NoteTxt",
                 isPinned: false,
                 info: {
-                    txt: '',
+                    label: '',
+                    todos: [
+                        { txt: '', doneAt: null }
+                    ]
                 }
             },
             keepImg: {
                 id: this.editableKeepId,
                 type: "NoteImg",
+                isPinned: false,
                 info: {
-                    url: "",
-                    title: ""
+                    url: '',
+                    title: ''
                 },
                 style: {
-                    backgroundColor: ""
+                    backgroundColor: ''
                 }
             },
             keepTodo: {
                 id: utilService.makeId(),
                 type: "NoteTodos",
+                isPinned: false,
                 info: {
-                    label: "",
+                    label: '',
                     todos: [
-                        { txt: "", doneAt: null }
+                        { txt: '', doneAt: null }
                     ]
+                },
+                style: {
+                    backgroundColor: 'none'
                 }
             }
 
@@ -63,48 +80,91 @@ export default {
     },
     computed: {
 
-    },
-    components: {},
-    methods: {
-        saveTxtKeep() {
 
-            console.log('emitting new txtKeep  to keep-app')
-            this.$emit('addKeep', this.keepTxt);
-            console.log('clearing add-keep keep varaible')
+    },
+    components: {
+
+    },
+    methods: {
+        getkeepType() {
+            if (this.keepType) return this.keep.type;
+            else if (this.buttonChoice !== null) return this.buttonChoice;
+            return 'NoteTxT';
+        },
+        saveTodoKeep() {
+
+            if (this.keep === null) { this.$emit('addKeep', this.keepTodo) } else {
+                var modKeep = this.keep;
+                modKeep.info.label = this.keepTodo.info.label;
+                modKeep.info.todos = [...this.keepTodo.info.todos];
+                this.$emit('editKeep', modKeep);
+            }
+            this.keepTodo = {
+                id: null,
+                type: 'NoteTodos',
+                isPinned: false,
+                info: {
+                    label: '',
+                    todos: [{ txt: '', doneAt: null }]
+                },
+                style: {
+                    backgroundColor: 'none'
+                }
+
+            }
+
+        },
+        saveTxtKeep() {
+            if (this.keep === null) { this.$emit('addKeep', this.keepTxt) } else {
+                var modKeep = this.keep;
+                modKeep.info.txt = this.keepTxt.info.txt;
+                this.$emit('editKeep', modKeep)
+            }
             this.keepTxt = {
+                id: null,
                 type: "NoteTxt",
                 isPinned: false,
-                id: null,
                 info: {
                     txt: '',
+                },
+                style: {
+                    backgroundColor: 'none'
                 }
             }
         },
 
         saveImgKeep() {
-            console.log('emitting new txtKeep  to keep-app');
-            this.$emit('addKeep', this.keepImg);
-            console.log('clearing add-keep keep varaible');
+            if (this.keep === null) { this.$emit('addKeep', this.keepImg) } else {
+                var modKeep = this.keep;
+                modKeep.info.url = this.keepImg.info.url;
+                modKeep.info.title = this.keepImg.info.title;
+                this.$emit('editKeep', modKeep);
+            };
             this.keepImg = {
-                id: this.editableKeepId,
                 type: "NoteImg",
+                isPinned: false,
+                id: null,
                 info: {
-                    url: "",
-                    title: ""
+                    url: '',
+                    title: ''
                 },
                 style: {
-                    backgroundColor: ""
+                    backgroundColor: 'none'
                 }
             }
+
         },
         newTxtKeep() {
-            this.keepType = 'NoteTxt';
+            this.buttonChoice = 'NoteTxt';
         },
 
         newImgKeep() {
-            this.keepType = 'NoteImg'
+            console.log(this.keepType);
+            this.buttonChoice = 'NoteImg'
+        },
+        newTodoKeep() {
+            this.buttonChoice = 'NoteTodos'
         }
 
-    },
-
+    }
 }

@@ -1,0 +1,11 @@
+.keep-preview-todos {}
+
+.todo-delete-btn {
+    border-radius: 5px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border: none;
+    color: grey;
+    font-size: 0.7em;
+    z-index: 1;
+}

@@ -2,17 +2,21 @@ import { utilService } from "./util-service.js";
 export const allKeeps = [{
         id: utilService.makeId(),
         type: "NoteTxt",
-        isPinned: true,
+        isPinned: false,
         info: {
-            txt: "Fullstack Me Baby!"
+            txt: "Dotan - Beers to the soccer game"
+        },
+        style: {
+            backgroundColor: 'none'
         }
     },
     {
         id: utilService.makeId(),
         type: "NoteImg",
+        isPinned: false,
         info: {
-            url: "http://coding-academy.org/books-photos/20.jpg",
-            title: "Me playing Mi"
+            url: "https://pbs.twimg.com/media/DtfLYF3XcAERkRB?format=jpg&name=small",
+            title: "Dev's Meme.."
         },
         style: {
             backgroundColor: "#00d"
@@ -21,12 +25,16 @@ export const allKeeps = [{
     {
         id: utilService.makeId(),
         type: "NoteTodos",
+        isPinned: false,
         info: {
-            label: "How was it:",
+            label: "Thoughts for After Coding Academy Course:",
             todos: [
-                { txt: "Do that", doneAt: null },
-                { txt: "Do this", doneAt: 187111111 }
+                { txt: "Travel to Zanzibar", doneAt: null },
+                { txt: "Sleep and make some sport", doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: 'none'
         }
     }
 ];
