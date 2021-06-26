@@ -5,10 +5,8 @@ export default {
     <div v-if="keep" class="keep-preview-text">
         <p v-if="!toShow" @click="toShow = !toShow">{{keep.info.txt}}</p>
     <p v-if="toShow">{{txt}}</p>
-    <!-- <div v-bind:class="modalDisplay" hidden> -->
     <div v-if="toShow" class="text-modal" @change="toShow = !toShow">
         <textarea contenteditable="true" placeholder="type here" v-model="txt" @change="saveToKeep"></textarea>
-        <!-- <textarea contenteditable="true" v-model="txt" >Hello I am a modal</textarea> -->
         
     </div>
     </div>

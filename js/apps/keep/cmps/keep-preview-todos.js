@@ -7,7 +7,9 @@ export default {
         <p>Todos:</p>
         <p>Todo: {{todo.txt}}</p>
         <p>Done At: {{getDateFormat(todo.doneAt)}}</p>
+        <button class="todo-delete-btn" @click.stop="delTask(idx, keep.id)">Edit</button>
         <button class="todo-delete-btn" @click.stop="delTask(idx, keep.id)">Delete</button>
+
 
 
     </li>

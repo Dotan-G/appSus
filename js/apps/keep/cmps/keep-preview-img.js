@@ -10,26 +10,21 @@ export default {
     </div> -->
 
     <div v-if="keep" class="keep-preview-image">
-        <p v-if="!toShow" @click="toShow = !toShow">{{keep.info.title}}</p>
-        <img v-if="!toShow" :src="keep.info.url" width="150px">
-        <p v-if="toShow">{{title}}</p>
-        <div v-if="toShow" class="image-modal">
-            <button class="exit-btn" @click="toShow = !toShow">x</button>
-            <textarea class="modal-image-title" contenteditable="true" placeholder="Enter title..." v-model="title"></textarea>
-            <textarea class="modal-image-url" contenteditable="true" placeholder="Enter image url..." v-model="url"></textarea>
-            <button @click="saveToKeep(); toShow = !toShow" class="save-btn">Save & Close</button>
-            
+        <p v-if="!toShowTitle && !toShowImg" @click="toShowTitle = !toShowTitle">{{keep.info.title}}</p>
+        <div v-if="toShowTitle" class="image-modal" @change="toShowTitle = !toShowTitle">
+            <textarea class="modal-image-title" @change="saveToKeep" contenteditable="true" placeholder="Enter title..." v-model="title"></textarea>
+        </div>
+        <img v-if="!toShowImg && !toShowTitle" @click="toShowImg = !toShowImg" :src="keep.info.url" width="150px">
+        <div v-if="toShowImg" class="image-modal" @change="toShowImg = !toShowImg">
+            <textarea class="modal-image-url" @change="saveToKeep" contenteditable="true" placeholder="Enter image url..." v-model="url"></textarea>
         </div>
     </div>
     `,
     data() {
         return {
-            // exitBtnClass: {
-            //     active: true,
-            //     'exit-btn': true
-            // },
 
-            toShow: false,
+            toShowTitle: false,
+            toShowImg: false,
             keepStyle: null,
             title: '',
             url: '',
@@ -56,15 +51,13 @@ export default {
         saveToKeep() {
             console.log('saving')
             this.keepImg = this.editableKeep;
-            this.keepImg.info.title = this.title;
-            this.keepImg.info.url = this.url;
+            if (this.title) this.keepImg.info.title = this.title;
+            if (this.url) this.keepImg.info.url = this.url;
             keepService.save(this.keepImg)
                 .then(() => {
 
                     console.log('success modifing  txt keep');
-                    //this.keepToEdit = null;
-                    //TODO: emit to loadKeeps
-                    //   this.loadKeeps();
+
 
                 })
                 .catch(err => {
