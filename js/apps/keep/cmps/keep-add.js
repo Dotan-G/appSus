@@ -2,7 +2,7 @@ import { utilService } from "../services/util-service.js"
 export default {
     props: ['editableKeepId', 'keep', 'delTask'],
     template: `
-    <div class="keep-add">      
+    <div class="keep-add"> 
         <form v-if="buttonChoice==='NoteTxt'">
             <input @change="saveTxtKeep" ref="keepTxt" type="text" v-model="keepTxt.info.txt" placeholder="Add a note..." class="add-bar">
         </form>
@@ -37,10 +37,10 @@ export default {
                 type: "NoteTxt",
                 isPinned: false,
                 info: {
-                    label: '',
-                    todos: [
-                        { txt: '', doneAt: null }
-                    ]
+                    txt: ''
+                },
+                style: {
+                    backgroundColor: 'none'
                 }
             },
             keepImg: {
@@ -88,7 +88,7 @@ export default {
         //     return this.keep.type;
         // },
         saveTodoKeep() {
-
+            console.log('todoKeep', this.keepTodo)
             if (this.keep === null) { this.$emit('addKeep', this.keepTodo) } else {
                 var modKeep = this.keep;
                 modKeep.info.label = this.keepTodo.info.label;

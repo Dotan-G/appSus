@@ -5,3 +5,22 @@
     height: 250px;
     overflow-wrap: break-word;
 }
+
+
+/* Modal */
+
+.modalVisible {
+    display: block;
+    border: 1px solid black;
+    position: fixed;
+    left: 35%;
+    top: 35%;
+    z-index: 1;
+    height: 400px;
+    width: 400px;
+    background-color: whitesmoke;
+}
+
+.modal-visible p {
+    padding: 15px;
+}

@@ -61,7 +61,7 @@ export default {
 
         saveKeep(keep) {
 
-
+            console.log(keep);
             keepService.save(keep)
                 .then(() => {
 
