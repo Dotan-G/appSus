@@ -7,7 +7,7 @@ export const allKeeps = [{
             txt: "Dotan - Beers to the soccer game"
         },
         style: {
-            backgroundColor: 'none'
+            backgroundColor: '#00d'
         }
     },
     {

@@ -9,7 +9,7 @@
 
 /* Modal */
 
-.modalVisible {
+.text-modal {
     display: block;
     border: 1px solid black;
     position: fixed;
@@ -21,6 +21,6 @@
     background-color: whitesmoke;
 }
 
-.modal-visible p {
+.text-modal p {
     padding: 15px;
 }

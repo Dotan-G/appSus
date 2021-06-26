@@ -4,14 +4,16 @@ export default {
     template: `
     <ul class="keep-list">
         <li v-for="keep in keeps" :key="keep.id">
-            <keep-preview :keep="keep" @editKeep="emitEditKeep" @todoEditedKeepToList="emitEditedTodoToKeep"/>
+            <keep-preview @click.native="getEditableKeep(keep)":keep="keep" :editableKeep="editableKeep" @editKeep="emitEditKeep" @todoEditedKeepToList="emitEditedTodoToKeep"/>
             <button @click.stop="remove(keep.id)">D</button>
         </li> 
         
     </ul> 
     `,
-    components: {
-        keepPreview
+    data() {
+        return {
+            editableKeep: null
+        }
     },
     methods: {
         remove(keepId) {
@@ -24,6 +26,13 @@ export default {
         emitEditedTodoToKeep(keep) {
             console.log(keep);
             this.$emit('todoEditedKeepToKeepApp', keep);
+        },
+        getEditableKeep(keep) {
+            this.editableKeep = keep;
+            console.log('Editable keep', this.editableKeep);
         }
-    }
+    },
+    components: {
+        keepPreview
+    },
 }
