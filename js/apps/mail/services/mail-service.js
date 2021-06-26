@@ -10,7 +10,7 @@ export const mailsService = {
     addMail,
     updateMail,
     sortMails,
-    showMails
+    // showMails
 }
 
 function query() {
@@ -45,11 +45,13 @@ function sortMails(mailsList) {
     return mailsList.sort((a, b) => b.sentAt - a.sentAt)
 }
 
-function showMails() {
-    return storageService.query(MAILS_KEY)
-        .then((mails) => {
-            const filterMails = mails.filter(mail => mail.isRead)
-            console.log('filterMails', filterMails)
-            return filterMails
-        })
-}
+// function showMails(key) {
+//     let filterMails;
+//     return storageService.query(MAILS_KEY)
+//         .then((mails) => {
+//             if (key) filterMails = mails.filter(mail => mail.isRead)
+//             if (!key) filterMails = mails.filter(mail => !mail.isRead)
+//             console.log('filterMails', filterMails)
+//             return filterMails
+//         })
+// }

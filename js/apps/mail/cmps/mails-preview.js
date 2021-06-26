@@ -9,13 +9,14 @@ export default {
                 <input type="checkbox">
             </div>
             <div class="mail-star flex-center" @click="starClick">
-                <input type="checkbox">
                 <p ref="elParag" @click="starred">☆</p>
             </div>
             <div class="mail-content-list" @click="openMail">
-                <p class="mail-name" :class="{'is-not-read': !mail.isRead }">{{mail.name}}</p>
-                <p class="mail-subject-and-body" :class="read()">{{mail.subject}}</p>
-                <p class="mail-time" :class="read">{{mail.realTime}}</p>
+                <router-link v-if="mail" :to="'/mail/'+mail.id">  
+                    <p class="mail-name" :class="{'is-not-read': !mail.isRead }">{{mail.name}}</p>
+                    <p class="mail-subject-and-body" :class="read()">{{mail.subject}}</p>
+                    <p class="mail-time" :class="read">{{mail.realTime}}</p>
+                </router-link>
             </div>
             <div class="mail-delete flex-center">
                 <p class="mail-delete" @click="remove">🗑</p>
@@ -43,6 +44,7 @@ export default {
             this.$emit('remove', this.mail.id)
         },
         starClick() {
+            this.$emit('starred')
             this.mail.isStarred = !this.mail.isStarred
             mailsService.updateMail(this.mail)
             this.starred()

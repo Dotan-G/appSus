@@ -15,30 +15,26 @@
     flex-basis: 5%;
     position: relative;
 }
-.mail-star input{
-    cursor: pointer;
-}
-
-.mail-star input {
-    margin: 0;
-    position: absolute;
-    opacity: 0.1;
-    z-index: 1;
-}
 
 .mail-star p {
     position: absolute;
     margin: 0;
+    cursor: pointer;
 }
 
 .mail-details .mail-content-list {
     flex-basis: 85%;
-    display: flex;
     margin: 0;
     padding: 0;
 }
 .mail-details .mail-content-list:hover{
     cursor: pointer;
+}
+
+.mail-details .mail-content-list a{
+    display: flex;
+    text-decoration: none;
+    color: black;
 }
 
 .mail-details .mail-name {

@@ -40,8 +40,7 @@ export default {
             this.$emit('sort', this.sortBy)
         },
         show() {
-            mailsService.showMails(this.showBy)
-            // this.$emit('show', this.showBy)
+            this.$emit('show', this.showBy)
         }
     },
     computed: {},
