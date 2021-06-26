@@ -11,3 +11,8 @@
     height: 80vh;
     margin-bottom: 500px;
 }
+
+button,
+.keep-preview-text p {
+    cursor: pointer;
+}

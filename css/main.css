@@ -22,6 +22,10 @@ body {
     margin: 0;
 }
 
+footer {
+    z-index: 2;
+}
+
 
 /* HELPERS */
 
