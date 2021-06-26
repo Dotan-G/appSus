@@ -1,0 +1,55 @@
+.keep-preview-image {
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+    height: 250px;
+    overflow-wrap: break-word;
+}
+
+
+/* Modal */
+
+.image-modal {
+    display: block;
+    border: 1px solid black;
+    position: fixed;
+    left: 35%;
+    top: 35%;
+    z-index: 1;
+    height: 400px;
+    width: 400px;
+    background-color: whitesmoke;
+}
+
+.modal-image-title,
+.modal-image-url {
+    padding: 15px;
+    display: block;
+}
+
+textarea {
+    width: 200px;
+}
+
+.exit-btn {
+    position: absolute;
+    margin-right: 5px;
+    margin-top: 5px;
+    top: 0;
+    right: 0;
+}
+
+.save-btn {
+    position: absolute;
+    bottom: 5%;
+    right: 40%;
+}
+
+button {
+    border-radius: 5px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border: none;
+    color: grey;
+    font-size: 0.7em;
+}

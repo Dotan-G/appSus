@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         saveToKeep() {
-            this.keepTxt = this.keep;
+            this.keepTxt = this.editableKeep;
             this.keepTxt.info.txt = this.txt;
             console.log(this.keepTxt)
             keepService.save(this.keepTxt)
