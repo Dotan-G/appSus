@@ -17,7 +17,7 @@ export default {
     template: `
         <div v-if="mails" class="email-app">
             <div class="mails-container">
-                <mail-func @compose="compose" @inbox="inbox" />
+                <mail-func @compose="compose" @inbox="inbox" :mails="unreadMails"/>
                 <mails-list v-if="!isCompose && !isDetails"
                     :mails="mailsToShow" @filterBy="setFilter" 
                     @sortBy="setSort" @showBy="setShow" @openMail="details" @remove="remove" @toShow/>
@@ -121,6 +121,9 @@ export default {
             }
             this.toShow()
         },
+        unreadMails() {
+            return this.mails.filter((mail => !mail.isRead))
+        }
     },
     created() {
         eventBus.$on('close', () => {
