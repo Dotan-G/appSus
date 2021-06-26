@@ -1,0 +1,7 @@
+.mails-starred {
+    flex-basis: 100%;
+}
+
+.mails-starred li {
+    list-style: none;
+}

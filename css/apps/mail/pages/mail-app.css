@@ -1,4 +1,5 @@
-@import '../cmps/mail-details.css';
+@import './mail-details.css';
+@import './mail-starred.css';
 @import '../cmps/mail-func.css';
 @import '../cmps/mail-preview.css';
 @import '../cmps/mail-list.css';

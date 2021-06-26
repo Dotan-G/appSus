@@ -1,7 +1,8 @@
 import homePage from './pages/home-page.js'
 import mailApp from './apps/mail/pages/email-app.js'
 import keepApp from './apps/keep/pages/keep-app.js'
-import mailDetails from './apps/mail/cmps/mail-details.js'
+import mailDetails from './apps/mail/pages/mail-details.js'
+import mailStarred from './apps/mail/pages/mail-starred.js'
 
 
 const routes = [
@@ -14,8 +15,12 @@ const routes = [
         component: mailApp,
         children: [
             {
-                path: 'mail/:mailId',
+                path: ':mailId',
                 component: mailDetails
+            },
+            {
+                path: '/starred',
+                component: mailStarred
             }
         ]
     },

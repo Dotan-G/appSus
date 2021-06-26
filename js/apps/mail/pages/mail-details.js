@@ -1,12 +1,12 @@
 import { mailsService } from "../services/mail-service.js"
+import { eventBus } from "../services/event-bus-service.js"
 
 export default {
-    props: ['mail'],
     template: `
         <section class="mail-content" v-if="mail">
             <h2>{{mail.subject}}</h2>
             <div class="user-details">
-                <h5>{{mail.name}}</h5>
+                <h5>{{mail.name}} </h5>
                 <h5><{{mail.name}}@wallaqme.com></h5>
                 <p>{{beforeXHours}} hours</p>
             </div>
@@ -19,12 +19,14 @@ export default {
     data() {
         return {
             // sentAt: this.beforeXHours
+            mail: null,
         }
     },
     methods: {
         close() {
-            this.$emit('detailsClose')
-        }
+            this.$router.push('/mail')
+            eventBus.$emit('close')
+        },
     },
     computed: {
         beforeXHours() {
@@ -32,7 +34,9 @@ export default {
         }
     },
     created() {
-
+        const { mailId } = this.$route.params
+        mailsService.getMailById(mailId)
+            .then(mail => this.mail = mail)
     },
     destroyed() { }
 }

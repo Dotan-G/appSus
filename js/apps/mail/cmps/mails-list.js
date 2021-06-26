@@ -1,3 +1,4 @@
+import { mailsService } from "../services/mail-service.js"
 import mailFilter from "../cmps/mail-filter.js"
 import mailsPreview from "./mails-preview.js"
 
@@ -15,18 +16,22 @@ export default {
         <div >
             <ul>
                 <li v-for="mail in mails">
-                    <mails-preview :mail="mail" @openMail="openMail" @remove="remove" />          
+                    <mails-preview :mail="mail" @openMail="openMail" @remove="remove" />    
                 </li>
             </ul>
         </div>
     </section>
     `,
     data() {
-        return {}
+        return {
+            mail: null,
+        }
     },
     methods: {
         openMail(mailId) {
             this.$emit('openMail', mailId)
+            mailsService.getMailById(mailId)
+                .then(mail => this.mail = mail)
         },
         remove(mailId) {
             this.$emit('remove', mailId)

@@ -1,8 +1,10 @@
 import { mailsService } from "../services/mail-service.js"
+import { eventBus } from "../services/event-bus-service.js"
 import mailsList from "../cmps/mails-list.js"
 import mailFunc from "../cmps/mail-functionality.js"
 import mailSend from "../cmps/mail-send.js"
-import mailDetails from "../cmps/mail-details.js"
+import mailDetails from "./mail-details.js"
+import mailStarred from "./mail-starred.js"
 
 export default {
     components: {
@@ -10,19 +12,19 @@ export default {
         mailFunc,
         mailSend,
         mailDetails,
+        mailStarred,
     },
     template: `
         <div v-if="mails" class="email-app">
             <div class="mails-container">
                 <mail-func @compose="compose" @inbox="inbox" />
-                <mails-list v-if="!isCompose && !isDetails" 
+                <mails-list v-if="!isCompose && !isDetails"
                     :mails="mailsToShow" @filterBy="setFilter" 
-                    @sortBy="setSort" @showBy="setShow" @openMail="details" @remove="remove" />
-                <mail-send  v-if="isCompose" @sentMail="sentMail" @mailsToShow/>
-                <mail-details v-if="isDetails" :mail="mail" @detailsClose="details" />
+                    @sortBy="setSort" @showBy="setShow" @openMail="details" @remove="remove" @toShow/>
+                <mail-send  v-if="isCompose" @sentMail="sentMail" @mailsToShow />
+                <!-- <mail-details v-if="isDetails" :mail="mail" @detailsClose="details" /> -->
+                <router-view v-if="isDetails"></router-view>
             </div>
-            <!-- <router-link v-if="showBy" v-if="mail" :to="'mail/'+ mail.id" />here</router-link>
-            <router-view></router-view> -->
         </div>
     `,
     data() {
@@ -42,10 +44,13 @@ export default {
                 .then(mails => this.mails = mails)
         },
         compose() {
+            this.$router.push('/mail')
+                .catch((err) => { err })
             this.isDetails = false
             this.isCompose = !this.isCompose
-        },
-        inbox() {
+        }, inbox() {
+            this.$router.push('/mail')
+                .catch((err) => { err })
             this.isDetails = false
             this.isCompose = false
         },
@@ -71,6 +76,14 @@ export default {
         },
         setShow(showBy) {
             this.showBy = showBy
+            let filterMails;
+            return mailsService.query()
+                .then((mails) => {
+                    if (showBy === 'ALL') return this.mails = mails
+                    if (showBy === 'READ') filterMails = mails.filter(mail => mail.isRead)
+                    if (showBy === 'UNREAD') filterMails = mails.filter(mail => !mail.isRead)
+                    return this.mails = filterMails
+                })
         },
         remove(mailId) {
             mailsService.removeMail(mailId)
@@ -78,6 +91,7 @@ export default {
                     this.loadMails()
                 })
         },
+
     },
     computed: {
         mailsToShow() {
@@ -105,10 +119,26 @@ export default {
                 if (this.sortBy === 'NEW') return mailsService.sortMails(mailsToShow)
                 if (this.sortBy === 'OLD') return mailsService.sortMails(mailsToShow).reverse()
             }
+            this.toShow()
         },
     },
     created() {
+        eventBus.$on('close', () => {
+            this.isDetails = false
+            this.isCompose = false
+        })
         this.loadMails()
     },
-    destroyed() { }
+    destroyed() {
+        eventBus.$off('close');
+    }
 }
+
+
+// @starred="starred"
+// starred() {
+    // this.$router.push('/starred')
+        // .catch((err) => { err })
+    // this.isDetails = true
+    // this.isCompose = false
+// },
