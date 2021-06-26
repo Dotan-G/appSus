@@ -5,9 +5,9 @@ export default {
     props: ['mail'],
     template: `
         <section class="mail-details"  :key="mail.id">
-            <div class="mail-checkbox flex-center">
+            <!-- <div class="mail-checkbox flex-center">
                 <input type="checkbox">
-            </div>
+            </div> -->
             <div class="mail-star flex-center" @click="starClick">
                 <p ref="elParag" @click="starred">☆</p>
             </div>

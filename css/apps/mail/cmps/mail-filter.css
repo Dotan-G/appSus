@@ -2,12 +2,13 @@
     height: 3rem;
     background-color: rgba(226, 226, 226, 0.52);
     position: relative;
+    flex-wrap: wrap;
 }
 
 .mail-filter input {
     height: 2.5rem;
-    width: 75%;
-    margin-inline-end: 1rem;
+    flex-basis: 75%;
+    /* margin-inline-end: 1rem; */
     border-radius: 1rem;
     border: 1px solid black;
 }
@@ -15,8 +16,8 @@
 .mail-filter .filterBy {
     position: absolute;
     z-index: 1;
-    right: 20%;
-    margin-inline-end: 4rem;
+    right: 25%;
+    /* margin-inline-end: 4rem; */
     height: 2.3rem;
     width: 5rem;
     border-radius: 1rem;
@@ -26,7 +27,7 @@
 
 .mail-filter .sortBy {
     height: 2.5rem;
-    width: 10%;
+    flex-basis: 10%;
     border-radius: 1rem;
     border: 1px solid black;
     background-color: #fff;
@@ -34,8 +35,45 @@
 
 .mail-filter .showBy {
     height: 2.5rem;
-    width: 10%;
+    flex-basis: 10%;
     border-radius: 1rem;
     border: 1px solid black;
     background-color: #fff;
+}
+
+@media (max-width: 700px) {
+    .mail-filter {
+        height: 6rem;
+    }
+    .mail-filter input{
+        flex-basis: 100%;
+    }
+    .mail-filter .sortBy{
+        flex-basis: 50%;
+    }
+    .mail-filter .showBy {
+        flex-basis: 50%;
+    }
+    .mail-filter .filterBy {
+        top: 0.3rem;
+        right: 5%;
+    }
+}
+
+@media (max-width: 500px) {
+    .mail-filter {
+        height: 6rem;
+    }
+    .mail-filter input{
+        flex-basis: 100%;
+    }
+    .mail-filter .sortBy{
+        flex-basis: 50%;
+    }
+    .mail-filter .showBy {
+        flex-basis: 50%;
+    }
+    .mail-filter .filterBy {
+        right: 5%;
+    }
 }

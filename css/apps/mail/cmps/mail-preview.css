@@ -1,22 +1,31 @@
 .mail-details {
     display: flex;
+    align-items: center;
     color: black;
     padding: 0.4rem;
+    transition: 200ms;
+}
+.mail-details:hover {
+    height: 2.5rem;
 }
 
-.mail-checkbox {
+/* .mail-checkbox {
     flex-basis: 5%;
 }
 .mail-checkbox input:hover{
     cursor: pointer;
-}
+} */
 
 .mail-star{
-    flex-basis: 5%;
+    flex-basis: 7.5%;
     position: relative;
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 50%;
 }
 
 .mail-star p {
+    color: rgb(255, 196, 0);
     position: absolute;
     margin: 0;
     cursor: pointer;
@@ -58,7 +67,7 @@
 }
 
 .mail-delete {
-    flex-basis: 5%;
+    flex-basis: 7.5%;
     margin: 0;
     padding: 0;
 }

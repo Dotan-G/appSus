@@ -10,8 +10,17 @@
 .email-app {
     height: 80vh;
     margin-bottom: 10vh;
+    font-family: 'Caudex', serif;
 }
 
 .mails-container {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+@media screen and (max-width: 500px) {
+    .mails-container {
+        grid-template-columns: 12fr;
+    }
 }
