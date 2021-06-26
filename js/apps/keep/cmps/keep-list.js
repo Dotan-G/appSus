@@ -4,8 +4,10 @@ export default {
     template: `
     <ul class="keep-list">
         <li v-for="keep in keeps" :key="keep.id">
-            <keep-preview @click.native="getEditableKeep(keep)":keep="keep" :editableKeep="editableKeep" @editKeep="emitEditKeep" @todoEditedKeepToList="emitEditedTodoToKeep"/>
-            <button @click.stop="remove(keep.id)">D</button>
+            <div class ="keep-preview-container">
+                <button class="delete-btn" @click.stop="remove(keep.id)">x</button>
+                <keep-preview @click.native="getEditableKeep(keep)":keep="keep" :editableKeep="editableKeep" @editKeep="emitEditKeep" @todoEditedKeepToList="emitEditedTodoToKeep"/>
+            </div>
         </li> 
         
     </ul> 

@@ -3,18 +3,6 @@
     display: flex;
 } */
 
-.keep-preview-container {
-    /* background-color: rgb(247, 245, 244); */
-    border: 1px solid rgb(194, 197, 201);
-    border-radius: 5px;
-    margin: 15px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* background-color: rgb(179, 30, 30); */
-}
-
 .car-preview-img {
     max-width: 100px;
     display: block;

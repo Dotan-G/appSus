@@ -4,6 +4,7 @@
 @import '../cmps/keep-preview-text.css';
 @import '../cmps/keep-preview-img.css';
 @import '../cmps/keep-preview-todos.css';
+@import '../cmps/keep-todo.css';
 .keep-container {
     display: flex;
     flex-direction: column;

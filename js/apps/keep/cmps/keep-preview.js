@@ -5,7 +5,7 @@ export default {
     props: ['keep', 'editableKeep'],
     template: `
     <!-- <div class="keep-preview-container keep-gallery" @click="emitEditKeep(keep.id)"> -->
-    <div class="keep-preview-container keep-gallery">
+    <div class="keep-gallery">
     <keep-preview-text v-if="keep.type=== 'NoteTxt'" :keep="keep" :editableKeep="editableKeep"/>
     <keep-preview-img v-if="keep.type=== 'NoteImg'" :keep="keep" :editableKeep="editableKeep"/>
     <keep-preview-todos v-if="keep.type=== 'NoteTodos'" @todoKeepToPreview="emitEditedKeep" :keep="keep" :editableKeep="editableKeep"/>

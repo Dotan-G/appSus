@@ -1,6 +1,7 @@
 .keep-preview-todos {}
 
-.todo-delete-btn {
+.todo-delete-btn,
+.todo-edit-btn {
     border-radius: 5px;
     margin: 0 auto;
     border: 1px solid black;

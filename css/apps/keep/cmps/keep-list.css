@@ -13,3 +13,40 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.todo-delete-btn,
+.todo-edit-btn,
+.delete-btn {
+    border-radius: 5px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border: none;
+    color: grey;
+    font-size: 0.7em;
+    z-index: 1;
+}
+
+.keep-preview-container {
+    position: relative;
+    /* background-color: rgb(247, 245, 244); */
+    border: 1px solid rgb(194, 197, 201);
+    border-radius: 5px;
+    margin: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: rgb(179, 30, 30); */
+}
+
+.delete-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+}
+
+.keep-preview-image,
+.keep-preview-todos,
+.keep-preview-text {
+    margin-top: 5px;
+}

@@ -4,11 +4,10 @@ export default {
     template: `
     <div v-if="keep" class="keep-preview-text">
         <p v-if="!toShow" @click="toShow = !toShow">{{keep.info.txt}}</p>
-    <p v-if="toShow">{{txt}}</p>
-    <div v-if="toShow" class="text-modal" @change="toShow = !toShow">
-        <textarea contenteditable="true" placeholder="type here" v-model="txt" @change="saveToKeep"></textarea>
-        
-    </div>
+        <!-- <p v-if="toShow">{{txt}}</p> -->
+        <div v-if="toShow" class="text-modal" @change="toShow = !toShow">
+            <textarea placeholder="Edit your Note here.." v-model="txt" @change="saveToKeep"></textarea>
+         </div>
     </div>
 
     `,
@@ -30,16 +29,6 @@ export default {
         }
     },
     computed: {
-        modalDisplay() {
-            return { modalVisible: this.modalIsHidden }
-        },
-
-        modalIsHidden() {
-
-            return this.keep;
-        }
-
-
 
     },
     methods: {
@@ -51,9 +40,6 @@ export default {
                 .then(() => {
 
                     console.log('success modifing  txt keep');
-                    //this.keepToEdit = null;
-                    //TODO: emit to loadKeeps
-                    //   this.loadKeeps();
 
                 })
                 .catch(err => {
@@ -66,20 +52,11 @@ export default {
                 })
 
 
-            // if (this.keepTxt.id === null) return
 
         },
 
 
 
-        // logKeepId()
-        // getClickedKeep(keepId) {
-        //     keepService.getKeepById(keepId)
-        //         .then(keep => {
-        //             this.keepTxt = keep
-        //             console.log(this.keepTxt);
-        //         })
-        // },
 
 
 

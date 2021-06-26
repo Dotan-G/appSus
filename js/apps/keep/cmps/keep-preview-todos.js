@@ -1,16 +1,14 @@
+import keepTodo from "./keep-todo.js";
 import { keepService } from "../services/keep-service.js"
 export default {
-    props: ['keep'],
+    props: ['keep', 'editableKeep'],
     template: `
     <div class="keep-preview-todos">
+    <p>Todos:</p>
     <li v-for="(todo, idx, name) in keep.info.todos" :key="todo.id" class="keep-todo-container">
-        <p>Todos:</p>
-        <p>Todo: {{todo.txt}}</p>
-        <p>Done At: {{getDateFormat(todo.doneAt)}}</p>
-        <button class="todo-delete-btn" @click.stop="delTask(idx, keep.id)">Edit</button>
+        <keep-todo :todo="todo" :keepToEdit="this.keepToEdit"  :todoToEdit="this.todoToEdit" :selTodoIdx="idx"/>
         <button class="todo-delete-btn" @click.stop="delTask(idx, keep.id)">Delete</button>
-
-
+        <button class="todo-edit-btn" @click.stop="sendEditableTodo(idx,keep.id)">Edit</button>
 
     </li>
 
@@ -19,7 +17,10 @@ export default {
     computed: {
         data() {
             return {
-                currTodoKeep: null
+                todoToEdit: null,
+                keepToEdit: null,
+                selTodoIdx: null,
+                currTodoKeep: null,
             }
         }
 
@@ -31,6 +32,23 @@ export default {
             return todoDoneDate === null ? '' : new Date(todoDoneDate).toLocaleTimeString();
         },
 
+
+
+        sendEditableTodo(idx, id) {
+            this.setKeepAndTodo(idx, id)
+        },
+
+        setKeepAndTodo(idx, id) {
+            keepService.getKeepById(id)
+                .then(keep => {
+                    this.keepToEdit = keep;
+                    this.todoToEdit = keep.info.todos[idx];
+                    this.selTodoIdx = id;
+                    console.log("keepToEdit", this.keepToEdit);
+                    console.log("todoToEdit", this.todoToEdit)
+                })
+        },
+
         delTask(todoIdx, todoKeepId) {
             keepService.getKeepById(todoKeepId)
                 .then(todo => {
@@ -40,10 +58,10 @@ export default {
                 });
         },
         emitEditedKeep(editedKeep) {
-            //console.log(editedKeep);
             this.$emit('todoKeepToPreview', editedKeep);
 
-        }
+        },
+
     },
 
 
@@ -52,5 +70,5 @@ export default {
 
 
 
-    components: {}
+    components: { keepTodo }
 }

@@ -2,21 +2,14 @@ import { keepService } from "../services/keep-service.js";
 export default {
     props: ['keep', 'editableKeep'],
     template: `
-    <!-- <div :style="keepStyle" class="keep-preview-text">
-    <p>{{keep.info.title}}</p>
-    <img :src="keep.info.url" width="150px">
-    
-
-    </div> -->
-
     <div v-if="keep" class="keep-preview-image">
         <p v-if="!toShowTitle && !toShowImg" @click="toShowTitle = !toShowTitle">{{keep.info.title}}</p>
         <div v-if="toShowTitle" class="image-modal" @change="toShowTitle = !toShowTitle">
-            <textarea class="modal-image-title" @change="saveToKeep" contenteditable="true" placeholder="Enter title..." v-model="title"></textarea>
+            <textarea class="modal-image-title" @change="saveToKeep" placeholder="Enter title..." v-model="title"></textarea>
         </div>
         <img v-if="!toShowImg && !toShowTitle" @click="toShowImg = !toShowImg" :src="keep.info.url" width="150px">
         <div v-if="toShowImg" class="image-modal" @change="toShowImg = !toShowImg">
-            <textarea class="modal-image-url" @change="saveToKeep" contenteditable="true" placeholder="Enter image url..." v-model="url"></textarea>
+            <textarea class="modal-image-url" @change="saveToKeep" placeholder="Enter image url..." v-model="url"></textarea>
         </div>
     </div>
     `,
