@@ -45,7 +45,6 @@
 }
 
 .add-bar {
-    margin-top: 2em;
     width: 100%;
     max-width: 509px;
     color: #202124;
@@ -61,6 +60,7 @@
     border: 2px solid #dadada;
     border-radius: 7px;
     transition: 0.3s;
+    margin-top: 2em;
 }
 
 .add-bar:focus {
