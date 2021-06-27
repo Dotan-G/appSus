@@ -50,20 +50,20 @@
     flex-basis: 10%;
     justify-self: start;
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
 }
 
 .mail-details .mail-subject-and-body {
     flex-basis: 80%;
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
 }
 
 .mail-details .mail-time {
     flex-basis: 10%;
     justify-self: end;
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
 }
 
 .mail-delete {

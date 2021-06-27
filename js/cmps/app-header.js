@@ -10,9 +10,9 @@ export default {
                 <div class="line"></div>
             </div>
             <nav :class="{'nav-close': !this.nav, 'app-navigation': this.nav}">
-                <router-link class="header-link" to="/mail">Mister mail</router-link>
-                <router-link class="header-link" to="/keep">Miss keep</router-link>
-                <router-link class="header-link" to="/book">Miss book</router-link>
+                <router-link class="header-link" to="/mail" @click.native="openModal">Mister mail</router-link>
+                <router-link class="header-link" to="/keep" @click.native="openModal">Miss keep</router-link>
+                <router-link class="header-link" to="/book" @click.native="openModal">Miss book</router-link>
             </nav>
         </header>
     `,
