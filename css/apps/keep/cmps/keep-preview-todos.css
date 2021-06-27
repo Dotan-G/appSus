@@ -1,4 +1,15 @@
-.keep-preview-todos {}
+.keep-preview-todos {
+    padding: 15px;
+}
+
+.keep-gallery {
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.keep-gallery:hover {
+    background-color: rgba(243, 215, 89, 0.973)
+}
 
 .todo-delete-btn,
 .todo-edit-btn {

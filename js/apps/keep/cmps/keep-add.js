@@ -80,15 +80,8 @@ export default {
 
     },
     methods: {
-        // getkeepType() {
 
-        //     if (!this.keep.type) {
-        //         return this.buttonChoice !== null ? this.buttonChoice : 'NoteTxT';
-        //     }
-        //     return this.keep.type;
-        // },
         saveTodoKeep() {
-            console.log('todoKeep', this.keepTodo)
             if (this.keep === null) { this.$emit('addKeep', this.keepTodo) } else {
                 var modKeep = this.keep;
                 modKeep.info.label = this.keepTodo.info.label;
@@ -155,7 +148,6 @@ export default {
         },
 
         newImgKeep() {
-            console.log(this.keepType);
             this.buttonChoice = 'NoteImg'
         },
         newTodoKeep() {

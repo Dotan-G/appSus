@@ -39,10 +39,7 @@ export default {
             return todoDoneDate === null ? '' : new Date(todoDoneDate).toLocaleTimeString();
         },
         saveToKeep() {
-            console.log(this.todo);
-            console.log(this.keepToEdit);
             this.keepTodo = this.TempKeepToEdit;
-            // this.keepTodo.info.todos.splice(this.selTodoIdx, 1, { txt: this.txt, doneAt: null });
             this.keepTodo.info.todos.splice(0, 1, { txt: this.txt, doneAt: null });
             keepService.save(this.keepTodo)
                 .then(() => {

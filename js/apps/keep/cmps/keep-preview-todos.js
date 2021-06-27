@@ -44,8 +44,6 @@ export default {
                     this.keepToEdit = keep;
                     this.todoToEdit = keep.info.todos[idx];
                     this.selTodoIdx = id;
-                    console.log("keepToEdit", this.keepToEdit);
-                    console.log("todoToEdit", this.todoToEdit)
                 })
         },
 

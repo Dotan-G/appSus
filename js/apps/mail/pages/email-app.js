@@ -48,7 +48,8 @@ export default {
                 .catch((err) => { err })
             this.isDetails = false
             this.isCompose = !this.isCompose
-        }, inbox() {
+        },
+        inbox() {
             this.$router.push('/mail')
                 .catch((err) => { err })
             this.isDetails = false
@@ -140,8 +141,8 @@ export default {
 
 // @starred="starred"
 // starred() {
-    // this.$router.push('/starred')
-        // .catch((err) => { err })
-    // this.isDetails = true
-    // this.isCompose = false
+// this.$router.push('/starred')
+// .catch((err) => { err })
+// this.isDetails = true
+// this.isCompose = false
 // },

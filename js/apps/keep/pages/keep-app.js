@@ -29,7 +29,6 @@ export default {
             keepService.getKeepById(keepId)
                 .then(keep => {
                     this.keepToEdit = keep
-                    console.log(this.keepToEdit);
                 })
         },
         toEditableKeep(keepId) {
@@ -49,7 +48,6 @@ export default {
 
         editKeep(editedKeep) {
             if (editedKeep.type === 'NoteTodos' && !editedKeep.info.todos.length) {
-                console.log(editedKeep.id + 'Erasing')
                 this.removeKeep(editedKeep.id);
 
             } else this.saveKeep(editedKeep);
@@ -61,7 +59,6 @@ export default {
 
         saveKeep(keep) {
 
-            console.log(keep);
             keepService.save(keep)
                 .then(() => {
 
