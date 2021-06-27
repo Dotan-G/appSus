@@ -42,7 +42,6 @@ export default {
     },
     methods: {
         saveToKeep() {
-            console.log('saving')
             this.keepImg = this.editableKeep;
             if (this.title) this.keepImg.info.title = this.title;
             if (this.url) this.keepImg.info.url = this.url;

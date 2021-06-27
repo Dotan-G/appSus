@@ -19,19 +19,16 @@ export default {
     },
     methods: {
         remove(keepId) {
-            console.log(`Emitting keep ${keepId}`);
             this.$emit('removeKeep', keepId);
         },
         emitEditKeep(keepId) {
             this.$emit('emitEditKeepApp', keepId)
         },
         emitEditedTodoToKeep(keep) {
-            console.log(keep);
             this.$emit('todoEditedKeepToKeepApp', keep);
         },
         getEditableKeep(keep) {
             this.editableKeep = keep;
-            console.log('Editable keep', this.editableKeep);
         }
     },
     components: {

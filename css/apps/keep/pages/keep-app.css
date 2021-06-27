@@ -5,14 +5,24 @@
 @import '../cmps/keep-preview-img.css';
 @import '../cmps/keep-preview-todos.css';
 @import '../cmps/keep-todo.css';
+@import '../cmps/keep-preview.css';
 .keep-container {
     display: flex;
     flex-direction: column;
     height: 80vh;
     margin-bottom: 500px;
+    font-size: larger;
 }
 
 button,
 .keep-preview-text p {
     cursor: pointer;
+}
+
+button {
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: rgba(243, 215, 89, 0.973)
 }
